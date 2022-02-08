@@ -1,9 +1,12 @@
+package com.example.login;
+
 import android.content.Context;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.sql.SQLException;
 
 public class SALUDSqlHelper extends SQLiteOpenHelper {
 
@@ -30,7 +33,7 @@ public class SALUDSqlHelper extends SQLiteOpenHelper {
             + DBSalud.ANIMAL_COL_SEXO + " TEXT,"
             + " FOREIGN KEY(" + DBSalud.ANIMAL_COL_ID_USUARIO
             + ") REFERENCES " + DBSalud.USUARIO_TABLE_USUARIO
-            + "(" + DBSalud.ANIMAL_COL_ID_USUARIO + "));";
+            + "(" + DBSalud.USUARIO_COL_ID_USUARIO + "));";
 
     String sqlCreateSEGUIMIENTO = "CREATE TABLE " + DBSalud.SEGUIMIENTO_TABLE_SEGUIMIENTO
             + "(" + DBSalud.SEGUIMIENTO_COL_ID_SEGUIMIENTO + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -38,10 +41,11 @@ public class SALUDSqlHelper extends SQLiteOpenHelper {
             + DBSalud.SEGUIMIENTO_COL_TIPO + " TEXT,"
             + DBSalud.SEGUIMIENTO_COL_PESO + " INTEGER,"
             + DBSalud.SEGUIMIENTO_COL_DESCRIPCION + " TEXT,"
+            + DBSalud.SEGUIMIENTO_COL_FECHA + " TEXT,"
             + DBSalud.ANIMAL_COL_SEXO + " TEXT,"
             + " FOREIGN KEY(" + DBSalud.SEGUIMIENTO_COL_ID_ANIMAL
             + ") REFERENCES " + DBSalud.ANIMAL_TABLE_ANIMAL
-            + "(" + DBSalud.SEGUIMIENTO_COL_ID_ANIMAL + "));";
+            + "(" + DBSalud.ANIMAL_COL_ID_ANIMAL + "));";
 
     private SALUDSqlHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
