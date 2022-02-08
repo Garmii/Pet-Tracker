@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.Pet_Tracker.SignIn"
+            android:exported="true" />
+        <activity
+            android:name="com.example.Pet_Tracker.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
