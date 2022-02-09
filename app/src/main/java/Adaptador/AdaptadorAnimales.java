@@ -17,7 +17,7 @@ import modelo.Animal;
 
 public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.ViewHolderAnimales> {
 
-    ArrayList<Animal> listaAnimales;
+    private ArrayList<Animal> listaAnimales;
 
     public AdaptadorAnimales(ArrayList<Animal> listaAnimales) {
         this.listaAnimales = listaAnimales;
@@ -77,6 +77,14 @@ public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.Vi
                     edadMascota.setText(animal.getAnyo() + "años y " + animal.getMes() + " mes");
                 } else {
                     edadMascota.setText(animal.getAnyo() + "año y " + animal.getMes() + " mes");
+                }
+            }
+
+            else if(animal.getMes() == 0){
+                if (animal.getAnyo() > 1) {
+                    edadMascota.setText(animal.getAnyo() + "años y " + animal.getMes() + " meses");
+                } else {
+                    edadMascota.setText(animal.getAnyo() + "año y " + animal.getMes() + " meses");
                 }
             }
 

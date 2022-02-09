@@ -7,23 +7,33 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.login.R;
 
+import java.sql.SQLException;
+
+import BD.DBSalud;
 import BD.SALUDSqlHelper;
 import modelo.Animal;
+import modelo.Usuario;
 
 public class Login extends AppCompatActivity {
 
     private SALUDSqlHelper saludSqlHelper;
     private SQLiteDatabase db;
 
-    Button iniciarSesion;
-    Button registrarse;
+    EditText correo;
+    EditText contra;
+
+    private Button iniciarSesion;
+    private Button registrarse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +42,15 @@ public class Login extends AppCompatActivity {
 
         db=null;
         saludSqlHelper = SALUDSqlHelper.getInstance(this);
+
+        try {
+            db = saludSqlHelper.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        correo = findViewById(R.id.etCorreo);
+        contra = findViewById(R.id.etContra);
 
         iniciarSesion = findViewById(R.id.iniciarSesion);
         registrarse = findViewById(R.id.registrarse);
@@ -45,19 +64,6 @@ public class Login extends AppCompatActivity {
                     }
                 }
         );
-
-
-
-
-
-/*        try {
-            db = saludSqlHelper.open();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }*/
-
-
-
         registrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,13 +75,81 @@ public class Login extends AppCompatActivity {
         iniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Login.this, Mascotas.class);
-                activityResultLauncher.launch(intent);
-                finish();
+                String[] argsDatos = new String[2];
+
+                argsDatos[0] = correo.getText().toString();
+                argsDatos[1] = contra.getText().toString();
+
+                String[] argsComprobarCuenta = new String[1];
+
+                argsComprobarCuenta[0] = correo.getText().toString();
+
+                if(comprobarDatos(argsDatos)){ // Están bien los datos
+                    Intent intent = new Intent(Login.this, Mascotas.class);
+                    Usuario usuario = extraerDatos(argsDatos);
+                    intent.putExtra("usuario",usuario);
+                    activityResultLauncher.launch(intent);
+                }else{
+
+                    if(comprobarCuenta(argsComprobarCuenta)){// Existe el correo en la BD?
+                        Toast toast = Toast.makeText(getApplicationContext(), "Datos incorrectos", Toast.LENGTH_LONG);
+                        toast.show();
+                    }else{
+                        Toast toast = Toast.makeText(getApplicationContext(), "No hay una cuenta con ese correo, porfavor registrate", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                }
+
+
             }
         });
+    }
 
+    private boolean comprobarDatos(String[] args) { //Comprueba que los datos estén bien
+        boolean existe = false;
+        Cursor cursor = db.query(DBSalud.USUARIO_TABLE_USUARIO,
+                null, DBSalud.USUARIO_COL_CORREO + "=? AND "
+                + DBSalud.USUARIO_COL_CONTRA + "=?",args,null,null,null);
 
+        if(cursor.moveToFirst()){
+            existe = true;
+        }
+
+        return existe;
+    }
+
+    private boolean comprobarCuenta(String[] args) { // Comprueba que exsita el correo en la BD
+        boolean existe = false;
+        Cursor cursor = db.query(DBSalud.USUARIO_TABLE_USUARIO,
+                null, DBSalud.USUARIO_COL_CORREO + "=?",args,null,null,null);
+
+        if(cursor.moveToFirst()){
+            existe = true;
+        }
+
+        return existe;
+    }
+
+    private Usuario extraerDatos(String[] args) { //Extrae los datos del usuario registrado
+        Usuario usuario = new Usuario();
+        Cursor cursor = db.query(DBSalud.USUARIO_TABLE_USUARIO,
+                null, DBSalud.USUARIO_COL_CORREO + "=? AND "
+                        + DBSalud.USUARIO_COL_CONTRA + "=?",args,null,null,null);
+
+        while(cursor.moveToNext()){
+            usuario.setId(cursor.getInt(0));
+            usuario.setNombre(cursor.getString(1));
+            usuario.setCorreo(cursor.getString(2));
+            usuario.setContra(cursor.getString(3));
+        }
+        cursor.close();
+
+        return usuario;
+    }
+
+    protected void onDestroy() {
+        super.onDestroy();
+        db.close();
     }
 
 }

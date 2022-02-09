@@ -20,6 +20,10 @@ public class Animal {
         this.sexo = sexo;
     }
 
+    public Animal() {
+
+    }
+
     public int getId() {
         return id;
     }

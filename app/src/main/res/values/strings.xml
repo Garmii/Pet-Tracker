@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Login</string>
+    <string name="tv_iniciar_sesion">Iniciar Sesión</string>
 </resources>
