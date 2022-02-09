@@ -28,7 +28,7 @@ public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.Vi
     public ViewHolderAnimales onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_item_animales, null, false);
+                .inflate(R.layout.list_item_animales, parent, false);
 
         return new ViewHolderAnimales(view);
     }

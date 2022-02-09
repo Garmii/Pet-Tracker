@@ -8,32 +8,41 @@
     android:background="@drawable/fondo_gradiente"
     tools:context="com.example.Pet_Tracker.Login">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/tv_iniciar_sesion"
-        android:layout_marginTop="20dp"
-        android:textSize="30dp"
-        android:layout_gravity="center"
-    />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
 
-    <EditText android:id="@+id/etCorreo"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etCorreo"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:inputType="textEmailAddress"
         android:layout_marginTop="20dp"
         android:hint="Correo"
-    />
+        android:background="@android:color/transparent"
+        />
 
-    <EditText android:id="@+id/etContra"
-        android:layout_width="wrap_content"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+
+    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etContra"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:inputType="textPassword"
         android:layout_marginTop="20dp"
         android:hint="Contraseña"
+        android:background="@android:color/transparent"
     />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button android:id="@+id/iniciarSesion"
         android:layout_marginTop="20dp"

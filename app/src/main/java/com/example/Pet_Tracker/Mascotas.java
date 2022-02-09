@@ -50,7 +50,6 @@ public class Mascotas extends AppCompatActivity {
 
         recycler = findViewById(R.id.recyclerMascotas);
         recycler.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        recycler.addItemDecoration(new DividerItemDecoration(recycler.getContext(), DividerItemDecoration.VERTICAL));
 
         //Recojo el usuario registrado
         Usuario usuario = (Usuario) getIntent().getSerializableExtra("usuario");
