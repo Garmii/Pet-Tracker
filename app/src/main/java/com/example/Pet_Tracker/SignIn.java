@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.login.R;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.sql.SQLException;
 
@@ -47,7 +48,6 @@ public class SignIn extends AppCompatActivity {
         correo = findViewById(R.id.etCorreo);
         contra = findViewById(R.id.etContra);
 
-        db=null;
         saludSqlHelper = SALUDSqlHelper.getInstance(this);
 
         try {
@@ -77,17 +77,14 @@ public class SignIn extends AppCompatActivity {
 
                if(comprobarCuenta(argsComprobar)){ // Existe un cuenta
 
-                   Toast toast = Toast.makeText(getApplicationContext(), "Ya hay una cuenta asociada a este correo", Toast.LENGTH_LONG);
-                   toast.show();
+                   FancyToast.makeText(getApplicationContext(),"Ya hay una cuenta asociada a este correo",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
 
                }else{ // No existe la cuenta
 
                    if(crearCuenta(argsInsertar)){
-                   Toast toast = Toast.makeText(getApplicationContext(), "Cuenta registrada", Toast.LENGTH_LONG);
-                   toast.show();
+                       FancyToast.makeText(getApplicationContext(),"Cuenta registrada!",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
                    }else{
-                       Toast toast = Toast.makeText(getApplicationContext(), "Error al crear la cuenta", Toast.LENGTH_LONG);
-                       toast.show();
+                       FancyToast.makeText(getApplicationContext(),"Error al crear la cuenta",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
                    }
 
                }
@@ -129,8 +126,8 @@ public class SignIn extends AppCompatActivity {
 
     }
 
-    protected void onDestroy() {
+/*    protected void onDestroy() {
         super.onDestroy();
         db.close();
-    }
+    }*/
 }

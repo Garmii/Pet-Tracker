@@ -5,6 +5,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,10 +50,10 @@ public class Mascotas extends AppCompatActivity {
 
         recycler = findViewById(R.id.recyclerMascotas);
         recycler.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        recycler.addItemDecoration(new DividerItemDecoration(recycler.getContext(), DividerItemDecoration.VERTICAL));
 
         //Recojo el usuario registrado
         Usuario usuario = (Usuario) getIntent().getSerializableExtra("usuario");
-
 
         cargarArrayListAnimales(usuario);
 
@@ -77,25 +78,27 @@ public class Mascotas extends AppCompatActivity {
         listaAnimales = extraerMascotas(args);
     }
 
-    private ArrayList<Animal> extraerMascotas(String[] args) { //Comprueba que los datos estén bien
+    private ArrayList<Animal> extraerMascotas(String[] args) { //Añade las mascotas del usuario registrado al array del recycler
         ArrayList<Animal> animales = new ArrayList<Animal>();
-        Animal animal = new Animal();
+
         Cursor cursor = db.query(DBSalud.ANIMAL_TABLE_ANIMAL,
                 null, DBSalud.ANIMAL_COL_ID_USUARIO + "=?",args,null,null,null);
 
        while(cursor.moveToNext()){
+           Animal animal = new Animal();
            animal.setId(cursor.getInt(0));
            animal.setIdUsuario(cursor.getInt(1));
            animal.setNombre(cursor.getString(2));
            animal.setAnyo(cursor.getInt(3));
            animal.setMes(cursor.getInt(4));
-           animal.setRaza(cursor.getString(5));
-           animal.setSexo(cursor.getString(6));
-           Log.i("ANIMALES", animal.toString());
+           animal.setEspecie(cursor.getString(5));
+           animal.setRaza(cursor.getString(6));
+           animal.setSexo(cursor.getString(7));
            animales.add(animal);
+           Log.i("ANIMALES",animal.toString());
        }
        cursor.close();
-
+        Log.i("ANIMALES",animales.toString());
         return animales;
     }
 

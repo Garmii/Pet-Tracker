@@ -17,6 +17,7 @@ public class DBSalud {
     public static final String ANIMAL_COL_NOMBRE = "NOMBRE";
     public static final String ANIMAL_COL_ANYO = "ANYO";
     public static final String ANIMAL_COL_MES = "MES";
+    public static final String ANIMAL_COL_ESPECIE = "ESPECIE";
     public static final String ANIMAL_COL_RAZA = "RAZA";
     public static final String ANIMAL_COL_SEXO = "SEXO";
 

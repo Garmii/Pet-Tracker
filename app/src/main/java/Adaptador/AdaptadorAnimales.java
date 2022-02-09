@@ -49,6 +49,7 @@ public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.Vi
 
         TextView nombreMascota;
         TextView edadMascota;
+        TextView especieMascota;
         TextView razaMascota;
         TextView sexoMascota;
 
@@ -58,6 +59,7 @@ public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.Vi
             edadMascota = itemView.findViewById(R.id.edadMascota);
             razaMascota = itemView.findViewById(R.id.razaMascota);
             sexoMascota = itemView.findViewById(R.id.sexoMascota);
+            especieMascota = itemView.findViewById(R.id.especieMascota);
         }
 
         public void rellenarDatos(Animal animal) {
@@ -89,6 +91,7 @@ public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.Vi
             }
 
             razaMascota.setText(animal.getRaza());
+            especieMascota.setText(animal.getEspecie());
             sexoMascota.setText(animal.getSexo());
 
         }

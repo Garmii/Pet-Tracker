@@ -10,12 +10,15 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.Debug;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.login.R;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.sql.SQLException;
 
@@ -39,15 +42,6 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        db=null;
-        saludSqlHelper = SALUDSqlHelper.getInstance(this);
-
-        try {
-            db = saludSqlHelper.open();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         correo = findViewById(R.id.etCorreo);
         contra = findViewById(R.id.etContra);
@@ -92,11 +86,9 @@ public class Login extends AppCompatActivity {
                 }else{
 
                     if(comprobarCuenta(argsComprobarCuenta)){// Existe el correo en la BD?
-                        Toast toast = Toast.makeText(getApplicationContext(), "Datos incorrectos", Toast.LENGTH_LONG);
-                        toast.show();
+                        FancyToast.makeText(getApplicationContext(),"Datos incorrectos",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
                     }else{
-                        Toast toast = Toast.makeText(getApplicationContext(), "No hay una cuenta con ese correo, porfavor registrate", Toast.LENGTH_LONG);
-                        toast.show();
+                        FancyToast.makeText(getApplicationContext(),"No hay una cuenta con ese correo, porfavor registrate",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
                     }
                 }
 
@@ -147,9 +139,21 @@ public class Login extends AppCompatActivity {
         return usuario;
     }
 
-    protected void onDestroy() {
+/*    protected void onDestroy() { // Destruyo la conexion cuando destruyo la actividad
         super.onDestroy();
         db.close();
-    }
+    }*/
 
+    @Override
+    protected void onResume() { // Abro la conexion a la base de datos cuando inicio la actividad
+        super.onResume();
+
+            saludSqlHelper = SALUDSqlHelper.getInstance(this);
+            db = null;
+            try {
+                    db = saludSqlHelper.open();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+    }
 }

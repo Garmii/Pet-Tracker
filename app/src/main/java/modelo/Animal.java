@@ -7,10 +7,11 @@ public class Animal {
     private String nombre;
     private int anyo;
     private int mes;
+    private String especie;
     private String raza;
     private String sexo;
 
-    public Animal(int id, int idUsuario, String nombre, int anyo, int mes, String raza, String sexo) {
+    public Animal(int id, int idUsuario, String nombre, int anyo, int mes, String raza, String sexo,String especie) {
         this.id = id;
         this.idUsuario = idUsuario;
         this.nombre = nombre;
@@ -80,6 +81,14 @@ public class Animal {
         this.sexo = sexo;
     }
 
+    public String getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
+
     @Override
     public String toString() {
         return "Animal{" +
@@ -88,6 +97,7 @@ public class Animal {
                 ", nombre='" + nombre + '\'' +
                 ", anyo=" + anyo +
                 ", mes=" + mes +
+                ", especie='" + especie + '\'' +
                 ", raza='" + raza + '\'' +
                 ", sexo='" + sexo + '\'' +
                 '}';
