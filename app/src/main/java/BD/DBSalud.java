@@ -1,4 +1,4 @@
-package com.example.Pet_Tracker;
+package BD;
 
 public class DBSalud {
 

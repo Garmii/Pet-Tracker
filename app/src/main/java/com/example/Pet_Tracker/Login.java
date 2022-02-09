@@ -9,13 +9,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.login.R;
 
-import java.sql.SQLException;
+import BD.SALUDSqlHelper;
+import modelo.Animal;
 
 public class Login extends AppCompatActivity {
 
@@ -63,6 +63,15 @@ public class Login extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Login.this,SignIn.class);
                activityResultLauncher.launch(intent);
+            }
+        });
+
+        iniciarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Login.this, Mascotas.class);
+                activityResultLauncher.launch(intent);
+                finish();
             }
         });
 

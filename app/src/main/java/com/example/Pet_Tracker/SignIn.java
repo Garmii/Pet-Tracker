@@ -34,6 +34,13 @@ public class SignIn extends AppCompatActivity {
             }
         });
 
+        registrarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
 
     }
 }
