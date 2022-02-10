@@ -12,8 +12,9 @@ public class Animal implements Serializable {
     private String especie;
     private String raza;
     private String sexo;
+    private int imagen;
 
-    public Animal(int id, int idUsuario, String nombre, int anyo, int mes, String raza, String sexo,String especie) {
+    public Animal(int id, int idUsuario, String nombre, int anyo, int mes, String raza, String sexo,String especie,int imagen) {
         this.id = id;
         this.idUsuario = idUsuario;
         this.nombre = nombre;
@@ -22,6 +23,7 @@ public class Animal implements Serializable {
         this.raza = raza;
         this.sexo = sexo;
         this.especie = especie;
+        this.imagen = imagen;
     }
 
     public Animal() {
@@ -92,6 +94,14 @@ public class Animal implements Serializable {
         this.especie = especie;
     }
 
+    public int getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(int imagen) {
+        this.imagen = imagen;
+    }
+
     @Override
     public String toString() {
         return "Animal{" +
@@ -103,6 +113,7 @@ public class Animal implements Serializable {
                 ", especie='" + especie + '\'' +
                 ", raza='" + raza + '\'' +
                 ", sexo='" + sexo + '\'' +
+                ", imagen='" + imagen + '\'' +
                 '}';
     }
 }

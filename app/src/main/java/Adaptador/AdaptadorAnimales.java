@@ -1,9 +1,11 @@
 package Adaptador;
 
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -66,6 +68,7 @@ public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.Vi
         TextView especieMascota;
         TextView razaMascota;
         TextView sexoMascota;
+        ImageView imagenMascota;
 
         public ViewHolderAnimales(@NonNull View itemView) {
             super(itemView);
@@ -74,6 +77,7 @@ public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.Vi
             razaMascota = itemView.findViewById(R.id.razaMascota);
             sexoMascota = itemView.findViewById(R.id.sexoMascota);
             especieMascota = itemView.findViewById(R.id.especieMascota);
+            imagenMascota = itemView.findViewById(R.id.imagenMascota);
         }
 
         public void rellenarDatos(Animal animal) {
@@ -82,32 +86,32 @@ public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.Vi
 
             if (animal.getMes() > 1) {
                 if (animal.getAnyo() > 1) {
-                    edadMascota.setText(animal.getAnyo() + "años y " + animal.getMes() + " meses");
+                    edadMascota.setText(animal.getAnyo() + " años y " + animal.getMes() + " meses");
                 } else {
-                    edadMascota.setText(animal.getAnyo() + "año y " + animal.getMes() + " meses");
+                    edadMascota.setText(animal.getAnyo() + " año y " + animal.getMes() + " meses");
                 }
             }
 
             else if (animal.getMes() == 1) {
                 if (animal.getAnyo() > 1) {
-                    edadMascota.setText(animal.getAnyo() + "años y " + animal.getMes() + " mes");
+                    edadMascota.setText(animal.getAnyo() + " años y " + animal.getMes() + " mes");
                 } else {
-                    edadMascota.setText(animal.getAnyo() + "año y " + animal.getMes() + " mes");
+                    edadMascota.setText(animal.getAnyo() + " año y " + animal.getMes() + " mes");
                 }
             }
 
             else if(animal.getMes() == 0){
                 if (animal.getAnyo() > 1) {
-                    edadMascota.setText(animal.getAnyo() + "años y " + animal.getMes() + " meses");
+                    edadMascota.setText(animal.getAnyo() + " años y " + animal.getMes() + " meses");
                 } else {
-                    edadMascota.setText(animal.getAnyo() + "año y " + animal.getMes() + " meses");
+                    edadMascota.setText(animal.getAnyo() + " año y " + animal.getMes() + " meses");
                 }
             }
 
             razaMascota.setText(animal.getRaza());
             especieMascota.setText(animal.getEspecie());
             sexoMascota.setText(animal.getSexo());
-
+            imagenMascota.setImageResource(animal.getImagen());
         }
     }
 }

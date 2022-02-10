@@ -15,38 +15,60 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="10dp"
             android:orientation="vertical">
+
+        <ImageView android:id="@+id/imagenDetalleMascota"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"/>
 
         <TextView android:id="@+id/nombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="30dp"
             android:textStyle="bold"
+            android:gravity="center"
         />
+
+            <View android:layout_width="250dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:layout_height="1dp"
+                android:background="#000000" />
 
         <TextView android:id="@+id/especie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
         />
 
-        <TextView android:id="@+id/anyo"
+        <TextView android:id="@+id/edad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
         />
 
-        <TextView android:id="@+id/mes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        />
 
         <TextView android:id="@+id/raza"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
+
         />
 
         <TextView android:id="@+id/sexo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
+        />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Ver seguimiento"
         />
         </LinearLayout>
 

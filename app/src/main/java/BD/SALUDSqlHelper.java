@@ -32,6 +32,7 @@ public class SALUDSqlHelper extends SQLiteOpenHelper {
             + DBSalud.ANIMAL_COL_ESPECIE + " TEXT,"
             + DBSalud.ANIMAL_COL_RAZA + " TEXT,"
             + DBSalud.ANIMAL_COL_SEXO + " TEXT,"
+            + DBSalud.ANIMAL_COL_IMAGEN + " INTEGER,"
             + " FOREIGN KEY(" + DBSalud.ANIMAL_COL_ID_USUARIO
             + ") REFERENCES " + DBSalud.USUARIO_TABLE_USUARIO
             + "(" + DBSalud.USUARIO_COL_ID_USUARIO + "));";

@@ -89,7 +89,6 @@ public class Mascotas extends AppCompatActivity {
         recycler.setAdapter(adaptadorAnimales);
 
 
-
     }
 
     private void cargarArrayListAnimales(Usuario usuario) {
@@ -114,6 +113,7 @@ public class Mascotas extends AppCompatActivity {
            animal.setEspecie(cursor.getString(5));
            animal.setRaza(cursor.getString(6));
            animal.setSexo(cursor.getString(7));
+           animal.setImagen(cursor.getInt(8));
            animales.add(animal);
            Log.i("ANIMALES",animal.toString());
        }
