@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
+            android:name="com.example.Pet_Tracker.Seguimientos"
+            android:exported="true" />
+        <activity
             android:name="com.example.Pet_Tracker.DetalleMascota"
             android:exported="false" />
         <activity

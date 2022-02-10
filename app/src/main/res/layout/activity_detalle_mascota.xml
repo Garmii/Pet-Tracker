@@ -64,9 +64,10 @@
             android:gravity="center"
         />
 
-        <Button
+        <Button android:id="@+id/verSeguimiento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:text="Ver seguimiento"
         />

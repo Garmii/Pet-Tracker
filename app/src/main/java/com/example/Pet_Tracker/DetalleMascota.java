@@ -1,16 +1,19 @@
 package com.example.Pet_Tracker;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.login.R;
-
-import org.w3c.dom.Text;
 
 import modelo.Animal;
 
@@ -23,10 +26,22 @@ public class DetalleMascota extends AppCompatActivity {
     TextView sexo;
     ImageView imagen;
 
+    Button verSeguimiento;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_mascota);
+
+        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+
+                    }
+                }
+        );
 
         nombre = findViewById(R.id.nombre);
         edad = findViewById(R.id.edad);
@@ -35,9 +50,21 @@ public class DetalleMascota extends AppCompatActivity {
         sexo = findViewById(R.id.sexo);
         imagen = findViewById(R.id.imagenDetalleMascota);
 
+        verSeguimiento = findViewById(R.id.verSeguimiento);
+
         Animal animal = getAnimal();
 
         cargarAnimal(animal);
+
+        verSeguimiento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Seguimientos.class);
+                intent.putExtra("animal",animal);
+
+                activityResultLauncher.launch(intent);
+            }
+        });
 
     }
 
