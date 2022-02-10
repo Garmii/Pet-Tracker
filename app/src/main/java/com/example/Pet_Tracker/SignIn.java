@@ -86,12 +86,7 @@ public class SignIn extends AppCompatActivity {
                    }else{
                        FancyToast.makeText(getApplicationContext(),"Error al crear la cuenta",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
                    }
-
                }
-
-
-
-
             }
         });
 

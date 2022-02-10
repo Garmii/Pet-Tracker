@@ -1,6 +1,8 @@
 package modelo;
 
-public class Animal {
+import java.io.Serializable;
+
+public class Animal implements Serializable {
 
     private int id;
     private int idUsuario;
@@ -19,6 +21,7 @@ public class Animal {
         this.mes = mes;
         this.raza = raza;
         this.sexo = sexo;
+        this.especie = especie;
     }
 
     public Animal() {

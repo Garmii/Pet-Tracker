@@ -14,8 +14,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.login.R;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -39,6 +42,16 @@ public class Mascotas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mascotas);
 
+        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+
+                    }
+                }
+        );
+
         db=null;
         saludSqlHelper = SALUDSqlHelper.getInstance(this);
 
@@ -57,17 +70,25 @@ public class Mascotas extends AppCompatActivity {
         cargarArrayListAnimales(usuario);
 
         AdaptadorAnimales adaptadorAnimales = new AdaptadorAnimales(listaAnimales);
+
+        adaptadorAnimales.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(),DetalleMascota.class);
+                intent.putExtra("animal",listaAnimales.get(recycler.getChildAdapterPosition(view)));
+
+                activityResultLauncher.launch(intent);
+
+
+                //Log.i("Animal seleccionado",""+listaAnimales.get(recycler.getChildAdapterPosition(view)));
+
+            }
+        });
+
         recycler.setAdapter(adaptadorAnimales);
 
-        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
 
-                    }
-                }
-        );
 
     }
 

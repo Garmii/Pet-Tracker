@@ -14,15 +14,14 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
 
-    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/margen_top_registrarse"
-        android:hint="Nombre"
-        android:background="@android:color/transparent"
-    />
-
+        <com.google.android.material.textfield.TextInputEditText android:id="@+id/etNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/margen_top_registrarse"
+            android:hint="Nombre"
+            android:background="@android:color/transparent"
+        />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -31,16 +30,15 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
 
-    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etCorreo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:inputType="textEmailAddress"
-        android:layout_marginTop="@dimen/margen_top_registrarse"
-        android:hint="Correo"
-        android:background="@android:color/transparent"
-    />
-
+        <com.google.android.material.textfield.TextInputEditText android:id="@+id/etCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="@dimen/margen_top_registrarse"
+            android:hint="Correo"
+            android:background="@android:color/transparent"
+        />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -49,16 +47,15 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
 
-    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etContra"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:inputType="textPassword"
-        android:layout_marginTop="@dimen/margen_top_registrarse"
-        android:hint="Contraseña"
-        android:background="@android:color/transparent"
-    />
-
+        <com.google.android.material.textfield.TextInputEditText android:id="@+id/etContra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:inputType="textPassword"
+            android:layout_marginTop="@dimen/margen_top_registrarse"
+            android:hint="Contraseña"
+            android:background="@android:color/transparent"
+        />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button android:id="@+id/registrarse"

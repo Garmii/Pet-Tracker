@@ -15,9 +15,10 @@ import java.util.ArrayList;
 
 import modelo.Animal;
 
-public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.ViewHolderAnimales> {
+public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.ViewHolderAnimales> implements View.OnClickListener{
 
     private ArrayList<Animal> listaAnimales;
+    private View.OnClickListener listener;
 
     public AdaptadorAnimales(ArrayList<Animal> listaAnimales) {
         this.listaAnimales = listaAnimales;
@@ -29,6 +30,8 @@ public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.Vi
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_animales, parent, false);
+
+        view.setOnClickListener(this);
 
         return new ViewHolderAnimales(view);
     }
@@ -43,6 +46,17 @@ public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.Vi
     @Override
     public int getItemCount() {
         return listaAnimales.size();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(listener != null){
+            listener.onClick(view);
+        }
+    }
+
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
     }
 
     public class ViewHolderAnimales extends RecyclerView.ViewHolder {
