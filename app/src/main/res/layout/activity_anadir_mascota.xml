@@ -11,7 +11,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="40dp"
+        android:layout_margin="20dp"
         >
 
         <LinearLayout
@@ -30,6 +30,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp">
 
@@ -45,6 +46,7 @@
 
             <LinearLayout
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -53,29 +55,43 @@
                     android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
                     android:text="Año"/>
 
-            <NumberPicker android:id="@+id/anyoMascota"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-            />
+                <com.andanhm.quantitypicker.QuantityPicker
+                    android:layout_gravity="center"
+                    android:id="@+id/anyoMascota"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    app:minQuantity="0"
+                    app:maxQuantity="30"
+                    app:quantityColor="#000000"
+                    app:buttonColor="#000000"/>
 
                 <TextView
                     android:layout_gravity="center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
                     android:text="Mes"/>
 
-            <NumberPicker android:id="@+id/mesMascota"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                />
+                <com.andanhm.quantitypicker.QuantityPicker
+                    android:layout_gravity="center"
+                    android:id="@+id/mesMascota"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    app:minQuantity="0"
+                    app:maxQuantity="11"
+                    app:quantityColor="#000000"
+                    app:buttonColor="#000000"/>
 
             </LinearLayout>
 
             <Spinner android:id="@+id/spinnerEspecie"
+                android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:entries="@array/especies"
                 android:layout_width="wrap_content"
@@ -84,6 +100,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp">
 
@@ -100,6 +117,7 @@
 
             <RadioGroup
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -118,14 +136,22 @@
             </RadioGroup>
 
             <Button
+                android:id="@+id/botonCambiarImagenMascota"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Cambiar imagen"
+                />
+
+            <Button
                 android:id="@+id/botonAnadirMascota"
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Anadir mascota!"
+                android:text="Anadir mascota"
             />
-
 
         </LinearLayout>
 

@@ -96,7 +96,7 @@ public class Mascotas extends AppCompatActivity {
                 activityResultLauncher.launch(intent);
 
 
-                //Log.i("Animal seleccionado",""+listaAnimales.get(recycler.getChildAdapterPosition(view)));
+                Log.i("Animal seleccionado",""+listaAnimales.get(recycler.getChildAdapterPosition(view)));
 
             }
         });
