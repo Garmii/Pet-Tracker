@@ -15,9 +15,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.login.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.sql.SQLException;
@@ -37,10 +39,14 @@ public class Mascotas extends AppCompatActivity {
     private SALUDSqlHelper saludSqlHelper;
     private SQLiteDatabase db;
 
+    private FloatingActionButton anadirAnimal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mascotas);
+
+        anadirAnimal = findViewById(R.id.botonAnadir);
 
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -87,6 +93,16 @@ public class Mascotas extends AppCompatActivity {
         });
 
         recycler.setAdapter(adaptadorAnimales);
+
+        anadirAnimal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),anadirMascota.class);
+                activityResultLauncher.launch(intent);
+            }
+        });
+
+
 
 
     }
