@@ -2,4 +2,5 @@
 <resources>
     <dimen name="tamaño_registrarse">30sp</dimen>
     <dimen name="margen_top_registrarse">20dp</dimen>
+    <dimen name="diez">10dp</dimen>
 </resources>

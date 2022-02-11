@@ -112,6 +112,8 @@ public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.Vi
             especieMascota.setText(animal.getEspecie());
             sexoMascota.setText(animal.getSexo());
             imagenMascota.setImageResource(animal.getImagen());
+
+
         }
     }
 }

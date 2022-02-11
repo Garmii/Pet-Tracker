@@ -77,6 +77,15 @@ public class Mascotas extends AppCompatActivity {
 
         AdaptadorAnimales adaptadorAnimales = new AdaptadorAnimales(listaAnimales);
 
+/*
+        int id = getResources().getIdentifier(String.valueOf(R.drawable.casper_circular),"drawable", getPackageName());
+        Log.i("ID",id+"");
+        id = getResources().getIdentifier(String.valueOf(R.drawable.link_circular),"drawable", getPackageName());
+        Log.i("ID",id+"");
+        id = getResources().getIdentifier(String.valueOf(R.drawable.ganon_circular),"drawable", getPackageName());
+        Log.i("ID",id+"");
+*/
+
         adaptadorAnimales.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
