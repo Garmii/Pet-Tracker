@@ -79,7 +79,9 @@ public class Mascotas extends AppCompatActivity {
                     @Override
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == 101){
-                            AdaptadorAnimales adaptadorAnimales = getAdaptadorAnimales(usuario);
+                          Intent intent = result.getData();
+                          listaAnimales.add((Animal) intent.getSerializableExtra("animal"));
+                          recycler.getAdapter().notifyItemInserted(listaAnimales.size());
                         }
                             Log.i("CODIGO",result.getResultCode()+"");
                     }

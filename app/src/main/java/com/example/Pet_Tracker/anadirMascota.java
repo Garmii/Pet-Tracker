@@ -142,7 +142,9 @@ public class anadirMascota extends AppCompatActivity {
                 animal.setRaza(raza.getText().toString());
                 animal.setImagen(ruta);
                 anadirMascota(animal);
-                setResult(101);
+                Intent intent = new Intent();
+                setResult(101,intent);
+                intent.putExtra("animal",animal);
                 finish();
             }
         });
