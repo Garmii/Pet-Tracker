@@ -6,21 +6,16 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.login.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,6 +23,7 @@ import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import Adaptador.AdaptadorAnimales;
 import BD.DBSalud;
@@ -49,9 +45,6 @@ public class Mascotas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mascotas);
-
-
-
 
         anadirAnimal = findViewById(R.id.botonAnadir);
 
@@ -82,6 +75,23 @@ public class Mascotas extends AppCompatActivity {
                           Intent intent = result.getData();
                           listaAnimales.add((Animal) intent.getSerializableExtra("animal"));
                           recycler.getAdapter().notifyItemInserted(listaAnimales.size());
+
+                        }else if(result.getResultCode() == 103){
+                            Intent intent = result.getData();
+                            Animal a = (Animal) intent.getSerializableExtra("animal");
+                            String pos = intent.getStringExtra("pos");
+                            Log.i("POSssss",pos);
+                            Log.i("AASdasdasd",listaAnimales.get(Integer.parseInt(pos)).toString());
+
+                            listaAnimales.set(Integer.parseInt(pos),a);
+
+                            Log.i("AASdasdasd",listaAnimales.get(Integer.parseInt(pos)).toString());
+                            recycler.getAdapter().notifyItemChanged(Integer.parseInt(pos));
+
+                            FancyToast.makeText(getApplicationContext(),a.getNombre() + " modificado correctamente",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+                        }else if(result.getResultCode() == RESULT_CANCELED){
+                        recycler.getAdapter().notifyDataSetChanged();
+
                         }
                             Log.i("CODIGO",result.getResultCode()+"");
                     }
@@ -94,17 +104,53 @@ public class Mascotas extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(),DetalleMascota.class);
                 intent.putExtra("animal",listaAnimales.get(recycler.getChildAdapterPosition(view)));
-
                 activityResultLauncher.launch(intent);
                 Log.i("Animal seleccionado",""+listaAnimales.get(recycler.getChildAdapterPosition(view)));
 
             }
         });
 
+
+        ItemTouchHelper.SimpleCallback itemTouchHelperCallback = new ItemTouchHelper.SimpleCallback(
+                ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.START | ItemTouchHelper.END, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) { //Gestos recycler view
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+
+                int fromPosition = viewHolder.getAdapterPosition();
+                int toPosition = target.getAdapterPosition();
+                Collections.swap(listaAnimales,fromPosition,toPosition);
+                recyclerView.getAdapter().notifyItemMoved(fromPosition,toPosition);
+
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+                switch (direction){
+                    case ItemTouchHelper.LEFT:
+                        Intent intent = new Intent(getApplicationContext(),EditarMascota.class);
+                        intent.putExtra("animal",listaAnimales.get(viewHolder.getAdapterPosition()));
+                        intent.putExtra("pos",String.valueOf(viewHolder.getAdapterPosition()));
+                        Log.i("POS",viewHolder.getAdapterPosition()+"");
+                        activityResultLauncher.launch(intent);
+                            break;
+                    case ItemTouchHelper.RIGHT:
+                        // TODO Dialogo de borrar
+                        break;
+                }
+
+
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchHelperCallback);
+        itemTouchHelper.attachToRecyclerView(recycler);
+
         anadirAnimal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),anadirMascota.class);
+                Intent intent = new Intent(getApplicationContext(), AnadirMascota.class);
                 intent.putExtra("usuario",usuario);
                 activityResultLauncher.launch(intent);
             }
@@ -145,6 +191,7 @@ public class Mascotas extends AppCompatActivity {
            animal.setImagen(cursor.getString(8));
            animales.add(animal);
        }
+
        cursor.close();
 
         Log.i("ANIMALES",animales.toString());

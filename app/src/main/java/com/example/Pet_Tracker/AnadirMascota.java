@@ -39,7 +39,7 @@ import BD.SALUDSqlHelper;
 import modelo.Animal;
 import modelo.Usuario;
 
-public class anadirMascota extends AppCompatActivity {
+public class AnadirMascota extends AppCompatActivity {
 
     ImageView imagen;
     EditText nombre;
@@ -95,7 +95,6 @@ public class anadirMascota extends AppCompatActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
         Animal animal = new Animal();
 
@@ -180,7 +179,7 @@ public class anadirMascota extends AppCompatActivity {
             }
     );
 
-    public String getRealPathFromURI(Uri uri) {
+    private String getRealPathFromURI(Uri uri) {
         Cursor cursor = getContentResolver().query(uri, null, null, null, null);
         cursor.moveToFirst();
         int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);

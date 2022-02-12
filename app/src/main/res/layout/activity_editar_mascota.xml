@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/fondo_gradiente"
-    tools:context="com.example.Pet_Tracker.AnadirMascota">
+    android:orientation="vertical"
+    tools:context="com.example.Pet_Tracker.EditarMascota">
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -26,14 +27,14 @@
                 android:layout_gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView android:id="@+id/imagenCrearMascota"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="10dp"
-                    />
+            <ImageView android:id="@+id/imagenEditarMascota"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+            />
 
-                <Spinner android:id="@+id/spinnerEspecie"
+                <Spinner android:id="@+id/spinnerEditarEspecie"
                     android:layout_marginTop="10dp"
                     android:layout_gravity="center"
                     android:entries="@array/especies"
@@ -51,14 +52,14 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp">
 
-                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etNombreMascota"
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etEditarNombreMascota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/margen_top_registrarse"
                     android:hint="Nombre"
                     android:background="@android:color/transparent"
-                    />
+                />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -69,7 +70,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp">
 
-                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etRazaMascota"
+                <com.google.android.material.textfield.TextInputEditText android:id="@+id/etEditarRazaMascota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -93,18 +94,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:text="Año"
-                    />
+                />
 
                 <com.andanhm.quantitypicker.QuantityPicker
                     android:layout_gravity="center"
-                    android:id="@+id/anyoMascota"
+                    android:id="@+id/anyoEditarMascota"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:layout_marginLeft="5dp"
                     app:quantityColor="#000000"
                     app:buttonColor="#000000"
-                    />
+                />
 
                 <TextView
                     android:layout_gravity="center_vertical"
@@ -112,17 +113,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:text="Mes"
-                    />
+                />
 
                 <com.andanhm.quantitypicker.QuantityPicker
                     android:layout_gravity="center"
-                    android:id="@+id/mesMascota"
+                    android:id="@+id/mesEditarMascota"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     app:quantityColor="#000000"
                     app:buttonColor="#000000"
-                    />
+                />
 
             </LinearLayout>
 
@@ -133,42 +134,41 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <RadioButton android:id="@+id/rbMacho"
+                <RadioButton android:id="@+id/rbEditarMacho"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Macho"
-                    />
+                />
 
-
-                <RadioButton android:id="@+id/rbHembra"
+                <RadioButton android:id="@+id/rbEditarHembra"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hembra"
-                    />
-
+                />
 
             </RadioGroup>
 
             <Button
-                android:id="@+id/botonCambiarImagenMascota"
+                android:id="@+id/botonEditarImagenMascota"
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Cambiar imagen"
-                />
+            />
 
             <Button
-                android:id="@+id/botonAnadirMascota"
+                android:id="@+id/botonEditarMascota"
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Anadir mascota"
-                />
+                android:text="Editar mascota"
+            />
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
 
 </LinearLayout>
