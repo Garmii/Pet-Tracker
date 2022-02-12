@@ -38,6 +38,10 @@ dependencies {
     implementation 'io.github.shashank02051997:FancyToast:2.0.1'
 //    https://github.com/andanhm/QuantityPicker
     implementation 'com.andanhm.quantitypicker:quantitypicker:1.1.0'
+//    https://github.com/Shashank02051997/FancyGifDialog-Android
+    implementation 'com.github.Shashank02051997:FancyGifDialog-Android:1.4'
+
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.24'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

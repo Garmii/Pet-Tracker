@@ -16,9 +16,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.login.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
+import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.sql.SQLException;
@@ -138,7 +141,37 @@ public class Mascotas extends AppCompatActivity {
                         activityResultLauncher.launch(intent);
                             break;
                     case ItemTouchHelper.RIGHT:
-                        // TODO Dialogo de borrar
+
+                        String nombreSeleccionado = listaAnimales.get(viewHolder.getAdapterPosition()).getNombre();
+
+                        new FancyGifDialog.Builder(Mascotas.this) // Dialogo para borrar registros
+                                .setTitle("Estás seguro que deseas eliminar a "+listaAnimales.get(viewHolder.getAdapterPosition()).getNombre())
+                                .setMessage("Esta acción no se podra deshacer, piensatelo bien.")
+                                .setTitleTextColor(R.color.black)
+                                .setDescriptionTextColor(R.color.black)
+                                .setNegativeBtnText("Cancelar")
+                                .setPositiveBtnBackground(R.color.black)
+                                .setPositiveBtnText("Eliminar")
+                                .setNegativeBtnBackground(R.color.black)
+                                .setGifResource(R.drawable.dog_crying)
+                                .isCancellable(true)
+                                .OnPositiveClicked(new FancyGifDialogListener() {//Al pulsar eliminar
+                                    @Override
+                                    public void OnClick() {
+                                        //TODO eliminar en la bd y ArrayList
+                                        FancyToast.makeText(Mascotas.this,"Adios " + nombreSeleccionado,FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+                                    }
+                                })
+                                .OnNegativeClicked(new FancyGifDialogListener() {//Al pulsar cancelar
+                                    @Override
+                                    public void OnClick() {
+                                        FancyToast.makeText(Mascotas.this,"No se ha eliminado a " + nombreSeleccionado,FancyToast.LENGTH_LONG,FancyToast.WARNING,false).show();
+                                    }
+                                })
+                                .build();
+
+                        recycler.getAdapter().notifyDataSetChanged();
+
                         break;
                 }
 
