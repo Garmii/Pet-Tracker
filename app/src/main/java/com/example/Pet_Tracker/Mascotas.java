@@ -4,6 +4,7 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -46,17 +50,10 @@ public class Mascotas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mascotas);
 
+
+
+
         anadirAnimal = findViewById(R.id.botonAnadir);
-
-        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                new ActivityResultCallback<ActivityResult>() {
-                    @Override
-                    public void onActivityResult(ActivityResult result) {
-
-                    }
-                }
-        );
 
         db=null;
         saludSqlHelper = SALUDSqlHelper.getInstance(this);
@@ -71,22 +68,25 @@ public class Mascotas extends AppCompatActivity {
         recycler.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
 
         //Recojo el usuario registrado
-        Usuario usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+         Usuario usuario = getUsuario();
 
-        cargarArrayListAnimales(usuario);
+        //Cargo el adaptador con las mascotas del usuario
+        AdaptadorAnimales adaptadorAnimales = getAdaptadorAnimales(usuario);
 
-        AdaptadorAnimales adaptadorAnimales = new AdaptadorAnimales(listaAnimales);
+        ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        if (result.getResultCode() == 101){
+                            AdaptadorAnimales adaptadorAnimales = getAdaptadorAnimales(usuario);
+                        }
+                            Log.i("CODIGO",result.getResultCode()+"");
+                    }
+                }
+        );
 
-/*
-        int id = getResources().getIdentifier(String.valueOf(R.drawable.casper_circular),"drawable", getPackageName());
-        Log.i("ID",id+"");
-        id = getResources().getIdentifier(String.valueOf(R.drawable.link_circular),"drawable", getPackageName());
-        Log.i("ID",id+"");
-        id = getResources().getIdentifier(String.valueOf(R.drawable.ganon_circular),"drawable", getPackageName());
-        Log.i("ID",id+"");
-*/
-
-        adaptadorAnimales.setOnClickListener(new View.OnClickListener() {
+        adaptadorAnimales.setOnClickListener(new View.OnClickListener() { //Al pulsar sobre un elemento del recycler lanza una actividad con los datos del animal
             @Override
             public void onClick(View view) {
 
@@ -94,32 +94,34 @@ public class Mascotas extends AppCompatActivity {
                 intent.putExtra("animal",listaAnimales.get(recycler.getChildAdapterPosition(view)));
 
                 activityResultLauncher.launch(intent);
-
-
                 Log.i("Animal seleccionado",""+listaAnimales.get(recycler.getChildAdapterPosition(view)));
 
             }
         });
 
-        recycler.setAdapter(adaptadorAnimales);
-
         anadirAnimal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),anadirMascota.class);
+                intent.putExtra("usuario",usuario);
                 activityResultLauncher.launch(intent);
             }
         });
-
-
-
-
     }
 
-    private void cargarArrayListAnimales(Usuario usuario) {
+
+
+    @NonNull
+    private AdaptadorAnimales getAdaptadorAnimales(Usuario usuario) { //Carga las mascotas del usuario registrado en el recycler
+        AdaptadorAnimales adaptadorAnimales = new AdaptadorAnimales(cargarArrayListAnimales(usuario));
+        recycler.setAdapter(adaptadorAnimales);
+        return adaptadorAnimales;
+    }
+
+    private ArrayList<Animal> cargarArrayListAnimales(Usuario usuario) {
         String[] args = new String[1];
         args[0] = String.valueOf(usuario.getId());
-        listaAnimales = extraerMascotas(args);
+        return listaAnimales = extraerMascotas(args);
     }
 
     private ArrayList<Animal> extraerMascotas(String[] args) { //Añade las mascotas del usuario registrado al array del recycler
@@ -138,13 +140,18 @@ public class Mascotas extends AppCompatActivity {
            animal.setEspecie(cursor.getString(5));
            animal.setRaza(cursor.getString(6));
            animal.setSexo(cursor.getString(7));
-           animal.setImagen(cursor.getInt(8));
+           animal.setImagen(cursor.getString(8));
            animales.add(animal);
-           Log.i("ANIMALES",animal.toString());
        }
        cursor.close();
+
         Log.i("ANIMALES",animales.toString());
         return animales;
     }
 
+    private Usuario getUsuario() { // Recojo el usuario registrado
+        Usuario usuario = new Usuario();
+        usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+        return usuario;
+    }
 }

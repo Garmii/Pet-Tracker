@@ -65,8 +65,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="5dp"
                     android:layout_marginLeft="5dp"
-                    app:minQuantity="0"
-                    app:maxQuantity="30"
                     app:quantityColor="#000000"
                     app:buttonColor="#000000"/>
 
@@ -83,8 +81,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    app:minQuantity="0"
-                    app:maxQuantity="11"
                     app:quantityColor="#000000"
                     app:buttonColor="#000000"/>
 
@@ -121,13 +117,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <RadioButton
+
+                <RadioButton android:id="@+id/rbMacho"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Macho"/>
 
 
-                <RadioButton
+                <RadioButton android:id="@+id/rbHembra"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Hembra"/>

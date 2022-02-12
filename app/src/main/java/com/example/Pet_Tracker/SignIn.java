@@ -92,7 +92,7 @@ public class SignIn extends AppCompatActivity {
 
     }
 
-    private boolean comprobarCuenta(String[] args) {
+    private boolean comprobarCuenta(String[] args) { //Comprueba que exista el correo en la base de datos
         boolean existe = false;
         Cursor cursor = db.query(DBSalud.USUARIO_TABLE_USUARIO,
                 null, DBSalud.USUARIO_COL_CORREO + "=? ",args,null,null,null);

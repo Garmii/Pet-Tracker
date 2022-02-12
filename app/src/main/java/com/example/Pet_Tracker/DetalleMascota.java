@@ -7,6 +7,9 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -65,7 +68,6 @@ public class DetalleMascota extends AppCompatActivity {
                 activityResultLauncher.launch(intent);
             }
         });
-
     }
 
     private void cargarAnimal(Animal animal) { // Cargo los datos del animal en la vista
@@ -73,7 +75,11 @@ public class DetalleMascota extends AppCompatActivity {
         especie.setText(animal.getEspecie());
         raza.setText(animal.getRaza());
         sexo.setText(animal.getSexo());
-        imagen.setImageResource(animal.getImagen());
+
+        //Cojo la imagen como ruta y la paso a bitmap
+        String ruta =  (animal.getImagen());
+        Bitmap bm = BitmapFactory.decodeFile(Uri.decode(ruta));
+        imagen.setImageBitmap(bm);
 
         if (animal.getMes() > 1) {
             if (animal.getAnyo() > 1) {

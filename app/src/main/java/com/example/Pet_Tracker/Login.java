@@ -54,7 +54,8 @@ public class Login extends AppCompatActivity {
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
                     public void onActivityResult(ActivityResult result) {
-
+                            correo.setText("");
+                            contra.setText("");
                     }
                 }
         );
@@ -79,9 +80,9 @@ public class Login extends AppCompatActivity {
 
                 argsComprobarCuenta[0] = correo.getText().toString();
 
-                if(comprobarDatos(argsDatos)){ // Están bien los datos
+                if(comprobarDatos(argsDatos)){
                     Intent intent = new Intent(Login.this, Mascotas.class);
-                    Usuario usuario = extraerDatos(argsDatos);
+                    Usuario usuario = extraerDatos(argsDatos); // Saco todos los datos del usuario para enviarlo a las demas actividades
                     intent.putExtra("usuario",usuario);
                     activityResultLauncher.launch(intent);
                 }else{
@@ -92,8 +93,6 @@ public class Login extends AppCompatActivity {
                         FancyToast.makeText(getApplicationContext(),"No hay una cuenta con ese correo, porfavor registrate",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
                     }
                 }
-
-
             }
         });
     }

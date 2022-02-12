@@ -1,6 +1,9 @@
 package modelo;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
+import java.net.URI;
 
 public class Animal implements Serializable {
 
@@ -12,9 +15,9 @@ public class Animal implements Serializable {
     private String especie;
     private String raza;
     private String sexo;
-    private int imagen;
+    private String imagen;
 
-    public Animal(int id, int idUsuario, String nombre, int anyo, int mes, String raza, String sexo,String especie,int imagen) {
+    public Animal(int id, int idUsuario, String nombre, int anyo, int mes, String raza, String sexo,String especie,String imagen) {
         this.id = id;
         this.idUsuario = idUsuario;
         this.nombre = nombre;
@@ -94,11 +97,11 @@ public class Animal implements Serializable {
         this.especie = especie;
     }
 
-    public int getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
