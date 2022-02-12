@@ -76,6 +76,8 @@ public class Mascotas extends AppCompatActivity {
                           listaAnimales.add((Animal) intent.getSerializableExtra("animal"));
                           recycler.getAdapter().notifyItemInserted(listaAnimales.size());
 
+                          FancyToast.makeText(getApplicationContext(),((Animal) intent.getSerializableExtra("animal")).getNombre() + " añadido correctamente",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+
                         }else if(result.getResultCode() == 103){
                             Intent intent = result.getData();
                             Animal a = (Animal) intent.getSerializableExtra("animal");

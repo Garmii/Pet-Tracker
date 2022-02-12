@@ -92,10 +92,10 @@ public class EditarMascota extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 switch (view.getId()){
-                    case R.id.rbMacho:
+                    case R.id.rbEditarMacho:
                         sexo = "Macho";
                         break;
-                    case R.id.rbHembra:
+                    case R.id.rbEditarHembra:
                         sexo = "Hembra";
                         break;
                 }
