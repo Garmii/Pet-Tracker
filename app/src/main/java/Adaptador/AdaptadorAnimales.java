@@ -3,6 +3,7 @@ package Adaptador;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -115,10 +116,15 @@ public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.Vi
             especieMascota.setText(animal.getEspecie());
             sexoMascota.setText(animal.getSexo());
 
-            String ruta =  (animal.getImagen());
-            Bitmap bm = BitmapFactory.decodeFile(Uri.decode(ruta)); // Pasa la imagen a bitmap
+            String ruta = animal.getImagen();
 
+            if(ruta.contains("default_")){
+                int drawableId = this.itemView.getResources().getIdentifier(ruta, "drawable", itemView.getContext().getPackageName());
+                imagenMascota.setImageResource(drawableId);
+            }else{
+            Bitmap bm = BitmapFactory.decodeFile(Uri.decode(ruta)); // Pasa la imagen a bitmap
             imagenMascota.setImageBitmap(bm);
+            }
         }
     }
 }

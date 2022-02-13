@@ -242,7 +242,7 @@ public class Mascotas extends AppCompatActivity {
            animal.setImagen(cursor.getString(8));
            animales.add(animal);
        }
-
+        Log.i("ANIMALES EN LA BD",animales.toString());
        cursor.close();
 
         return animales;

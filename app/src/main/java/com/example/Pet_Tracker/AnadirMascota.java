@@ -58,7 +58,8 @@ public class AnadirMascota extends AppCompatActivity {
 
     private ArrayList<String> especies;
 
-    private String ruta;
+    private String ruta="";
+    private String nombreFotoDefecto="";
 
 
     @Override
@@ -139,7 +140,11 @@ public class AnadirMascota extends AppCompatActivity {
                 animal.setAnyo(anyo.getValue());
                 animal.setMes(mes.getValue());
                 animal.setRaza(raza.getText().toString());
+                if(!ruta.isEmpty()){
                 animal.setImagen(ruta);
+                }else{
+                animal.setImagen(nombreFotoDefecto);
+                }
                 anadirMascota(animal);
                 animal.setId(getIdMascotaCreada(animal));
                 Intent intent = new Intent();
@@ -207,7 +212,7 @@ public class AnadirMascota extends AppCompatActivity {
         activityResultLauncher.launch(intent);
     }
 
-    private void anadirMascota(Animal animal){ //Inserto el nuevo animal en la BD
+    private void anadirMascota(Animal animal) { //Inserto el nuevo animal en la BD
         ContentValues cv = new ContentValues();
         cv.put("ID_USUARIO",animal.getIdUsuario());
         cv.put("NOMBRE",animal.getNombre());
@@ -225,27 +230,35 @@ public class AnadirMascota extends AppCompatActivity {
         switch (seleccionado){
             case "Perro":
                 imagen.setImageResource(R.drawable.default_dog);
+                nombreFotoDefecto = "default_dog";
                 break;
             case "Gato":
                 imagen.setImageResource(R.drawable.default_cat);
+                nombreFotoDefecto = "default_cat";
                 break;
             case "Pajaro":
                 imagen.setImageResource(R.drawable.default_bird);
+                nombreFotoDefecto = "default_bird";
                 break;
             case "Pinguino":
                 imagen.setImageResource(R.drawable.default_penguin);
+                nombreFotoDefecto = "default_penguin";
                 break;
             case "Rana":
                 imagen.setImageResource(R.drawable.default_frog);
+                nombreFotoDefecto = "default_frog";
                 break;
             case "Conejo":
                 imagen.setImageResource(R.drawable.default_rabbit);
+                nombreFotoDefecto = "default_rabbit";
                 break;
             case "Cerdo":
                 imagen.setImageResource(R.drawable.default_pig);
+                nombreFotoDefecto = "default_pig";
                 break;
             default:
                 imagen.setImageResource(R.drawable.add_pet_icon);
+                nombreFotoDefecto = "add_pet_icon";
                 break;
         }
     }
