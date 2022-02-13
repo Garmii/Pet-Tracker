@@ -5,12 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/fondo_gradiente"
+    android:background="?attr/backgroundColor"
     tools:context="com.example.Pet_Tracker.Login">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:boxStrokeColor="?attr/textColor"
+        app:hintTextColor="?attr/textColor"
+        android:textColorHint="?attr/textColor"
+        android:hint="Correo"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
 
@@ -20,8 +24,9 @@
         android:layout_gravity="center"
         android:inputType="textEmailAddress"
         android:layout_marginTop="20dp"
-        android:hint="Correo"
         android:background="@android:color/transparent"
+        android:textColor="?attr/textColor"
+
         />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -29,6 +34,10 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:boxStrokeColor="?attr/textColor"
+        app:hintTextColor="?attr/textColor"
+        android:textColorHint="?attr/textColor"
+        android:hint="Contraseña"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
 
@@ -38,8 +47,8 @@
         android:layout_gravity="center"
         android:inputType="textPassword"
         android:layout_marginTop="20dp"
-        android:hint="Contraseña"
         android:background="@android:color/transparent"
+        android:textColor="?attr/textColor"
     />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -50,11 +59,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Iniciar Sesión"
+        android:textColor="?attr/textColor"
+        android:background="?attr/buttonColor"
         />
 
     <TextView
         android:layout_marginTop="20dp"
         android:textSize="15sp"
+        android:textColor="?attr/textColor"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,10 +74,12 @@
         />
 
     <Button android:id="@+id/registrarse"
+        android:textColor="?attr/textColor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Registrarse"
+        android:background="?attr/buttonColor"
         />
 
 

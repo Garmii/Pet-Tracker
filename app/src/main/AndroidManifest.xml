@@ -12,7 +12,7 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Login" >
+        android:theme="@style/temaClaro" >
         <activity
             android:name="com.example.Pet_Tracker.EditarMascota"
             android:exported="true" />

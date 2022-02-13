@@ -40,8 +40,6 @@ import modelo.Usuario;
 
 public class Mascotas extends AppCompatActivity {
 
-     SharedPreferences sharedPreferences;
-
     ArrayList<Animal> listaAnimales;
     RecyclerView recycler;
 
@@ -50,17 +48,20 @@ public class Mascotas extends AppCompatActivity {
 
     private FloatingActionButton anadirAnimal;
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mascotas);
+
         sharedPreferences = new SharedPreferences(this);
 
-        if(sharedPreferences.loadNightModeState() == true){
+        if (sharedPreferences.loadNightModeState() == true) {
             setTheme(R.style.temaOscuro);
-        }else{
+        } else {
             setTheme(R.style.temaClaro);
         }
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mascotas);
 
         anadirAnimal = findViewById(R.id.botonAnadir);
 
@@ -267,22 +268,4 @@ public class Mascotas extends AppCompatActivity {
         return usuario;
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.app_bar_menu,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        //TODO cambiar tema con shared preferences
-        boolean esOscuro = sharedPreferences.loadNightModeState();
-        switch (item.getItemId()){
-            case R.id.botonCambiarTema:
-                esOscuro = !esOscuro;
-                sharedPreferences.setNightModeState(esOscuro);
-                break;
-        }
-        return true;
-    }
 }
