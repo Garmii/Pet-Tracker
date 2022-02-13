@@ -141,6 +141,7 @@ public class AnadirMascota extends AppCompatActivity {
                 animal.setRaza(raza.getText().toString());
                 animal.setImagen(ruta);
                 anadirMascota(animal);
+                animal.setId(getIdMascotaCreada(animal));
                 Intent intent = new Intent();
                 setResult(101,intent);
                 intent.putExtra("animal",animal);
@@ -158,6 +159,23 @@ public class AnadirMascota extends AppCompatActivity {
 
     }
 
+    private int getIdMascotaCreada(Animal animal) {
+        String args[] = new String[2];
+        args[0] = String.valueOf(animal.getIdUsuario());
+        args[1] = animal.getNombre();
+
+        String cols[] = new String[1];
+        cols[0] = DBSalud.ANIMAL_COL_ID_ANIMAL;
+
+        Cursor c = db.query(DBSalud.ANIMAL_TABLE_ANIMAL,cols,DBSalud.ANIMAL_COL_ID_USUARIO + " =? AND " + DBSalud.ANIMAL_COL_NOMBRE + " =?",args,null,null,null);
+
+        while(c.moveToNext()){
+            animal.setId(c.getInt(0));
+        }
+        c.close();
+        return animal.getId();
+    }
+
     ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -167,10 +185,7 @@ public class AnadirMascota extends AppCompatActivity {
                     if(result.getResultCode() == RESULT_OK){
                         Intent data = result.getData();
                         Uri imageUri = data.getData();
-
                         ruta = getRealPathFromURI(imageUri);
-
-                        Log.i("RUTA",ruta);
                         imagen.setImageURI(imageUri);
                     }else{
                         FancyToast.makeText(getApplicationContext(),"Error al cargar la imagen",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
@@ -192,7 +207,7 @@ public class AnadirMascota extends AppCompatActivity {
         activityResultLauncher.launch(intent);
     }
 
-    private synchronized void anadirMascota(Animal animal){ //Inserto el nuevo animal en la BD
+    private void anadirMascota(Animal animal){ //Inserto el nuevo animal en la BD
         ContentValues cv = new ContentValues();
         cv.put("ID_USUARIO",animal.getIdUsuario());
         cv.put("NOMBRE",animal.getNombre());

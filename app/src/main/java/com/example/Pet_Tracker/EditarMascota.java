@@ -78,6 +78,7 @@ public class EditarMascota extends AppCompatActivity {
         animal = getAnimal();
         cargarAnimal(animal);
         String pos = getIntent().getStringExtra("pos");
+        Log.i("POSICION RECIBIDA EDITAR",pos);
 
         db=null;
         saludSqlHelper = SALUDSqlHelper.getInstance(this);
@@ -118,7 +119,6 @@ public class EditarMascota extends AppCompatActivity {
                     setResult(103,intent);
                     intent.putExtra("animal",animal);
                     intent.putExtra("pos",pos);
-                    Log.i("a",animal.toString() + pos);
                     finish();
                 }else{
                    FancyToast.makeText(getApplicationContext(),"Error al modificar",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
@@ -136,7 +136,7 @@ public class EditarMascota extends AppCompatActivity {
 
     }
 
-    private synchronized int actualizarMascota(String args[]){
+    private int actualizarMascota(String args[]){
         ContentValues contentValues = new ContentValues();
         contentValues.put("NOMBRE",animal.getNombre());
         contentValues.put("ANYO",animal.getAnyo());
@@ -145,13 +145,13 @@ public class EditarMascota extends AppCompatActivity {
         contentValues.put("RAZA",animal.getRaza());
         contentValues.put("SEXO",animal.getSexo());
         contentValues.put("IMAGEN",animal.getImagen());
-        int filas;
-        return filas = db.update(DBSalud.ANIMAL_TABLE_ANIMAL,contentValues,DBSalud.ANIMAL_COL_ID_USUARIO + " =? AND "+ DBSalud.ANIMAL_COL_ID_ANIMAL + " =?",args);
+        return db.update(DBSalud.ANIMAL_TABLE_ANIMAL,contentValues,DBSalud.ANIMAL_COL_ID_USUARIO + " =? AND "+ DBSalud.ANIMAL_COL_ID_ANIMAL + " =?",args);
 
     }
 
     @NonNull
     private Animal setAnimal() {
+        animal.setId(animal.getId());
         animal.setNombre(nombre.getText().toString());
         animal.setAnyo(anyo.getValue());
         animal.setMes(mes.getValue());
@@ -159,6 +159,7 @@ public class EditarMascota extends AppCompatActivity {
         animal.setRaza(raza.getText().toString());
         animal.setSexo(sexo);
         animal.setImagen(ruta);
+        Log.i("ANIMAL SETEADO EDITAR",animal.toString());
         return animal;
     }
 
@@ -217,7 +218,6 @@ public class EditarMascota extends AppCompatActivity {
 
                         ruta = getRealPathFromURI(imageUri);
 
-                        Log.i("RUTA",ruta);
                         imagen.setImageURI(imageUri);
                     }else{
                         FancyToast.makeText(getApplicationContext(),"Error al cargar la imagen",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
@@ -242,6 +242,7 @@ public class EditarMascota extends AppCompatActivity {
     private Animal getAnimal() {
         Animal animal = new Animal();
         animal = (Animal) getIntent().getSerializableExtra("animal");
+        Log.i("ANIMAL RECIBIDO EDITAR",animal.toString());
         return animal;
     }
 }
