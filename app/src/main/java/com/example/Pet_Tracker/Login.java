@@ -45,11 +45,12 @@ public class Login extends AppCompatActivity {
 
         sharedPreferences = new SharedPreferences(this);
 
-        if (sharedPreferences.loadNightModeState() == true) {
+        if (sharedPreferences.loadNightModeState()) {
             setTheme(R.style.temaOscuro);
         } else {
             setTheme(R.style.temaClaro);
         }
+
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_login);
 
@@ -175,26 +176,21 @@ public class Login extends AppCompatActivity {
         }
 
         @Override
-        public boolean onOptionsItemSelected (@NonNull MenuItem item){
+        public boolean onOptionsItemSelected (@NonNull MenuItem item){ // Opciones del navbar
             //TODO cambiar tema con shared preferences
             boolean esOscuro = sharedPreferences.loadNightModeState();
             switch (item.getItemId()) {
                 case R.id.botonCambiarTema:
                     esOscuro = !esOscuro;
                     sharedPreferences.setNightModeState(esOscuro);
-                    if (esOscuro) {
-                        setTheme(R.style.temaOscuro);
                         reiniciarActividad();
-                    } else {
-                        setTheme(R.style.temaClaro);
-                        reiniciarActividad();
-                    }
+
                     break;
             }
             return true;
         }
 
-        private void reiniciarActividad () {
+        private void reiniciarActividad () { //Reinicio la actividad para que el tema cambie
 
             Intent intent = new Intent(getApplicationContext(), Login.class);
             startActivity(intent);

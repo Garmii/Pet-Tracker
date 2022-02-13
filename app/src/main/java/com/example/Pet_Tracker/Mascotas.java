@@ -55,7 +55,7 @@ public class Mascotas extends AppCompatActivity {
 
         sharedPreferences = new SharedPreferences(this);
 
-        if (sharedPreferences.loadNightModeState() == true) {
+        if (sharedPreferences.loadNightModeState()) {
             setTheme(R.style.temaOscuro);
         } else {
             setTheme(R.style.temaClaro);
