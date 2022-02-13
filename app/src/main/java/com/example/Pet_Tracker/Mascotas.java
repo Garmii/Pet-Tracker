@@ -15,7 +15,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.login.R;
@@ -31,10 +34,13 @@ import java.util.Collections;
 import Adaptador.AdaptadorAnimales;
 import BD.DBSalud;
 import BD.SALUDSqlHelper;
+import SharedPreferences.SharedPreferences;
 import modelo.Animal;
 import modelo.Usuario;
 
 public class Mascotas extends AppCompatActivity {
+
+     SharedPreferences sharedPreferences;
 
     ArrayList<Animal> listaAnimales;
     RecyclerView recycler;
@@ -48,6 +54,13 @@ public class Mascotas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mascotas);
+        sharedPreferences = new SharedPreferences(this);
+
+        if(sharedPreferences.loadNightModeState() == true){
+            setTheme(R.style.temaOscuro);
+        }else{
+            setTheme(R.style.temaClaro);
+        }
 
         anadirAnimal = findViewById(R.id.botonAnadir);
 
@@ -252,5 +265,24 @@ public class Mascotas extends AppCompatActivity {
         Usuario usuario = new Usuario();
         usuario = (Usuario) getIntent().getSerializableExtra("usuario");
         return usuario;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.app_bar_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        //TODO cambiar tema con shared preferences
+        boolean esOscuro = sharedPreferences.loadNightModeState();
+        switch (item.getItemId()){
+            case R.id.botonCambiarTema:
+                esOscuro = !esOscuro;
+                sharedPreferences.setNightModeState(esOscuro);
+                break;
+        }
+        return true;
     }
 }

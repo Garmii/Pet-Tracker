@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Login</string>
+    <string name="app_name">Pet Tracker</string>
     <string name="tv_iniciar_sesion">Iniciar Sesión</string>
 </resources>
