@@ -25,8 +25,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
-import com.andanhm.quantitypicker.QuantityPicker;
 import com.example.login.R;
+import com.mcdev.quantitizerlibrary.HorizontalQuantitizer;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.sql.SQLException;
@@ -44,8 +44,8 @@ public class EditarMascota extends AppCompatActivity {
     ImageView imagen;
     EditText nombre;
     EditText raza;
-    QuantityPicker anyo;
-    QuantityPicker mes;
+    HorizontalQuantitizer anyo;
+    HorizontalQuantitizer mes;
     Spinner especie;
     RadioButton rbMacho;
     RadioButton rbHembra;
@@ -153,8 +153,8 @@ public class EditarMascota extends AppCompatActivity {
     @NonNull
     private Animal setAnimal() {
         animal.setNombre(nombre.getText().toString());
-        animal.setAnyo(anyo.getQuantity());
-        animal.setMes(mes.getQuantity());
+        animal.setAnyo(anyo.getValue());
+        animal.setMes(mes.getValue());
         animal.setEspecie(especie.getSelectedItem().toString());
         animal.setRaza(raza.getText().toString());
         animal.setSexo(sexo);
@@ -164,6 +164,8 @@ public class EditarMascota extends AppCompatActivity {
 
     private void cargarAnimal(Animal animal){
         nombre.setText(animal.getNombre());
+        anyo.setValue(animal.getAnyo());
+        mes.setValue(animal.getMes());
         raza.setText(animal.getRaza());
         ruta = animal.getImagen();
         Bitmap bm = BitmapFactory.decodeFile(Uri.decode(ruta)); // Pasa la imagen a bitmap

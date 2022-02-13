@@ -25,9 +25,9 @@ import android.widget.NumberPicker;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 
-import com.andanhm.quantitypicker.QuantityPicker;
 import com.example.login.R;
 import com.google.android.material.navigation.NavigationBarView;
+import com.mcdev.quantitizerlibrary.HorizontalQuantitizer;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.io.ByteArrayOutputStream;
@@ -44,8 +44,8 @@ public class AnadirMascota extends AppCompatActivity {
     ImageView imagen;
     EditText nombre;
     EditText raza;
-    QuantityPicker anyo;
-    QuantityPicker mes;
+    HorizontalQuantitizer anyo;
+    HorizontalQuantitizer mes;
     Spinner especie;
     RadioButton rbMacho;
     RadioButton rbHembra;
@@ -77,11 +77,11 @@ public class AnadirMascota extends AppCompatActivity {
         rbHembra = findViewById(R.id.rbHembra);
         rbMacho = findViewById(R.id.rbMacho);
 
-        anyo.setMaxQuantity(30);
-        anyo.setMinQuantity(0);
+        anyo.setMaxValue(30);
+        anyo.setMinValue(0);
 
-        mes.setMaxQuantity(11);
-        mes.setMinQuantity(0);
+        mes.setMaxValue(11);
+        mes.setMinValue(0);
 
 
         //Recojo el usuario registrado
@@ -136,8 +136,8 @@ public class AnadirMascota extends AppCompatActivity {
                 animal.setIdUsuario(usuario.getId());
                 animal.setNombre(nombre.getText().toString());
                 animal.setEspecie(especie.getSelectedItem().toString());
-                animal.setAnyo(anyo.getQuantity());
-                animal.setMes(mes.getQuantity());
+                animal.setAnyo(anyo.getValue());
+                animal.setMes(mes.getValue());
                 animal.setRaza(raza.getText().toString());
                 animal.setImagen(ruta);
                 anadirMascota(animal);
