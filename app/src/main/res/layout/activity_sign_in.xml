@@ -5,12 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/fondo_gradiente"
+    android:background="?attr/backgroundColor"
     tools:context="com.example.Pet_Tracker.Login">
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:boxStrokeColor="?attr/textColor"
+        app:hintTextColor="?attr/textColor"
+        android:textColorHint="?attr/textColor"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
 
@@ -27,6 +30,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:boxStrokeColor="?attr/textColor"
+        app:hintTextColor="?attr/textColor"
+        android:textColorHint="?attr/textColor"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
 
@@ -44,6 +50,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:boxStrokeColor="?attr/textColor"
+        app:hintTextColor="?attr/textColor"
+        android:textColorHint="?attr/textColor"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
 
@@ -63,6 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="?attr/textColor"
         android:text="Registrarse"
     />
 
@@ -80,6 +90,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Iniciar Sesión"
+        android:textColor="?attr/textColor"
+        android:backgroundTint="?attr/buttonColor"
     />
 
 </LinearLayout>

@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo_gradiente"
+    android:background="?attr/backgroundColor"
     tools:context="com.example.Pet_Tracker.DetalleMascota">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:cardBackgroundColor="?attr/cardBackgroundColor"
         android:layout_margin="20dp">
 
         <LinearLayout
@@ -28,6 +29,7 @@
             android:layout_height="wrap_content"
             android:textSize="30dp"
             android:textStyle="bold"
+            android:textColor="?attr/textColor"
             android:gravity="center"
         />
 
@@ -41,12 +43,14 @@
         <TextView android:id="@+id/especie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="?attr/textColor"
             android:gravity="center"
         />
 
         <TextView android:id="@+id/edad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="?attr/textColor"
             android:gravity="center"
         />
 
@@ -54,6 +58,7 @@
         <TextView android:id="@+id/raza"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="?attr/textColor"
             android:gravity="center"
 
         />
@@ -61,6 +66,7 @@
         <TextView android:id="@+id/sexo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="?attr/textColor"
             android:gravity="center"
         />
 
@@ -70,6 +76,8 @@
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:text="Ver seguimiento"
+            android:textColor="?attr/textColor"
+            android:backgroundTint="?attr/buttonColor"
         />
         </LinearLayout>
 

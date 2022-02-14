@@ -36,6 +36,7 @@ import java.util.ArrayList;
 
 import BD.DBSalud;
 import BD.SALUDSqlHelper;
+import SharedPreferences.SharedPreferences;
 import modelo.Animal;
 import modelo.Usuario;
 
@@ -61,9 +62,19 @@ public class AnadirMascota extends AppCompatActivity {
     private String ruta="";
     private String nombreFotoDefecto="";
 
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        sharedPreferences = new SharedPreferences(this);
+
+        if (sharedPreferences.loadNightModeState()) {
+            setTheme(R.style.temaOscuro);
+        } else {
+            setTheme(R.style.temaClaro);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_anadir_mascota);
 
@@ -145,12 +156,17 @@ public class AnadirMascota extends AppCompatActivity {
                 }else{
                 animal.setImagen(nombreFotoDefecto);
                 }
-                anadirMascota(animal);
-                animal.setId(getIdMascotaCreada(animal));
-                Intent intent = new Intent();
-                setResult(101,intent);
-                intent.putExtra("animal",animal);
-                finish();
+                if(nombre.getText().toString().trim().isEmpty() ||
+                        raza.getText().toString().trim().isEmpty()){
+                    FancyToast.makeText(getApplicationContext(), "Rellena todos los campos", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                }else {
+                    anadirMascota(animal);
+                    animal.setId(getIdMascotaCreada(animal));
+                    Intent intent = new Intent();
+                    setResult(101, intent);
+                    intent.putExtra("animal", animal);
+                    finish();
+                }
             }
         });
 

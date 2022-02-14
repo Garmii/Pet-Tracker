@@ -1,20 +1,16 @@
 package com.example.Pet_Tracker;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.login.R;
 import com.shashank.sony.fancytoastlib.FancyToast;
@@ -23,6 +19,7 @@ import java.sql.SQLException;
 
 import BD.DBSalud;
 import BD.SALUDSqlHelper;
+import SharedPreferences.SharedPreferences;
 
 public class SignIn extends AppCompatActivity {
 
@@ -36,8 +33,19 @@ public class SignIn extends AppCompatActivity {
     private EditText correo;
     private EditText contra;
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        sharedPreferences = new SharedPreferences(this);
+
+        if (sharedPreferences.loadNightModeState()) {
+            setTheme(R.style.temaOscuro);
+        } else {
+            setTheme(R.style.temaClaro);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
@@ -80,16 +88,36 @@ public class SignIn extends AppCompatActivity {
                    FancyToast.makeText(getApplicationContext(),"Ya hay una cuenta asociada a este correo",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
 
                }else{ // No existe la cuenta
-
-                   if(crearCuenta(argsInsertar)){
-                       FancyToast.makeText(getApplicationContext(),"Cuenta registrada!",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
-                   }else{
-                       FancyToast.makeText(getApplicationContext(),"Error al crear la cuenta",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
-                   }
+                   //Los campos no están vacios
+                if(nombre.getText().toString().trim().isEmpty() ||
+                        correo.getText().toString().trim().isEmpty() ||
+                        contra.getText().toString().trim().isEmpty()){
+                    FancyToast.makeText(getApplicationContext(), "Rellena todos los campos", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                }else {
+                    if (crearCuenta(argsInsertar)) {
+                        FancyToast.makeText(getApplicationContext(), "Cuenta registrada!", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+                        limpiarCampos();
+                    } else {
+                        FancyToast.makeText(getApplicationContext(), "Error al crear la cuenta", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                    }
+                }
                }
+                try {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                } catch (Exception e) {
+                    // TODO: manejar excepcion
+                }
             }
         });
 
+    }
+
+    private void limpiarCampos() {
+
+        nombre.setText("");
+        correo.setText("");
+        contra.setText("");
     }
 
     private boolean comprobarCuenta(String[] args) { //Comprueba que exista el correo en la base de datos
@@ -125,4 +153,5 @@ public class SignIn extends AppCompatActivity {
         super.onDestroy();
         db.close();
     }*/
+
 }

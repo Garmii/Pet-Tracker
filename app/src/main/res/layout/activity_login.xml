@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:text="Iniciar Sesión"
         android:textColor="?attr/textColor"
-        android:background="?attr/buttonColor"
+        android:backgroundTint="?attr/buttonColor"
         />
 
     <TextView
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Registrarse"
-        android:background="?attr/buttonColor"
+        android:backgroundTint="?attr/buttonColor"
         />
 
 

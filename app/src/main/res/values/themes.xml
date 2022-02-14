@@ -54,7 +54,7 @@
         <item name="tintColor">@color/black</item>
         <item name="buttonColor">@color/light_blue_dark</item>
 
-        <item name="cardBackgroundColor">@color/light_white_dark</item>
+        <item name="cardBackgroundColor">#194257</item>
 
     </style>
 

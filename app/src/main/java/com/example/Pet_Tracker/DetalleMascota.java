@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.login.R;
 
+import SharedPreferences.SharedPreferences;
 import modelo.Animal;
 
 public class DetalleMascota extends AppCompatActivity {
@@ -31,8 +32,18 @@ public class DetalleMascota extends AppCompatActivity {
 
     Button verSeguimiento;
 
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        sharedPreferences = new SharedPreferences(this);
+
+        if (sharedPreferences.loadNightModeState()) {
+            setTheme(R.style.temaOscuro);
+        } else {
+            setTheme(R.style.temaClaro);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_mascota);
 
@@ -77,34 +88,35 @@ public class DetalleMascota extends AppCompatActivity {
         sexo.setText(animal.getSexo());
 
         //Cojo la imagen como ruta y la paso a bitmap
-        String ruta =  (animal.getImagen());
-        Bitmap bm = BitmapFactory.decodeFile(Uri.decode(ruta));
-        imagen.setImageBitmap(bm);
-
-        if (animal.getMes() > 1) {
-            if (animal.getAnyo() > 1) {
-                edad.setText(animal.getAnyo() + " años y " + animal.getMes() + " meses");
-            } else {
-                edad.setText(animal.getAnyo() + " año y " + animal.getMes() + " meses");
-            }
+        String ruta = (animal.getImagen());
+        if (ruta.contains("default_")) {
+            int drawableId = getResources().getIdentifier(ruta, "drawable", getApplicationContext().getPackageName());
+            imagen.setImageResource(drawableId);
+        } else {
+            Bitmap bm = BitmapFactory.decodeFile(Uri.decode(ruta)); // Pasa la imagen a bitmap
+            imagen.setImageBitmap(bm);
         }
 
-        else if (animal.getMes() == 1) {
-            if (animal.getAnyo() > 1) {
-                edad.setText(animal.getAnyo() + " años y " + animal.getMes() + " mes");
-            } else {
-                edad.setText(animal.getAnyo() + " año y " + animal.getMes() + " mes");
+            if (animal.getMes() > 1) {
+                if (animal.getAnyo() > 1) {
+                    edad.setText(animal.getAnyo() + " años y " + animal.getMes() + " meses");
+                } else {
+                    edad.setText(animal.getAnyo() + " año y " + animal.getMes() + " meses");
+                }
+            } else if (animal.getMes() == 1) {
+                if (animal.getAnyo() > 1) {
+                    edad.setText(animal.getAnyo() + " años y " + animal.getMes() + " mes");
+                } else {
+                    edad.setText(animal.getAnyo() + " año y " + animal.getMes() + " mes");
+                }
+            } else if (animal.getMes() == 0) {
+                if (animal.getAnyo() > 1) {
+                    edad.setText(animal.getAnyo() + " años y " + animal.getMes() + " meses");
+                } else {
+                    edad.setText(animal.getAnyo() + " año y " + animal.getMes() + " meses");
+                }
             }
         }
-
-        else if(animal.getMes() == 0){
-            if (animal.getAnyo() > 1) {
-                edad.setText(animal.getAnyo() + " años y " + animal.getMes() + " meses");
-            } else {
-                edad.setText(animal.getAnyo() + " año y " + animal.getMes() + " meses");
-            }
-        }
-    }
 
     private Animal getAnimal() { // Recojo el animal seleccionado en el Recycler a traves del intent
         Animal animal = new Animal();

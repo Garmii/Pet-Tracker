@@ -33,6 +33,7 @@ import java.sql.SQLException;
 
 import BD.DBSalud;
 import BD.SALUDSqlHelper;
+import SharedPreferences.SharedPreferences;
 import modelo.Animal;
 import modelo.Usuario;
 
@@ -57,8 +58,19 @@ public class EditarMascota extends AppCompatActivity {
     private String sexo;
     private Animal animal;
 
+    SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        sharedPreferences = new SharedPreferences(this);
+
+        if (sharedPreferences.loadNightModeState()) {
+            setTheme(R.style.temaOscuro);
+        } else {
+            setTheme(R.style.temaClaro);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_mascota);
 
@@ -79,6 +91,12 @@ public class EditarMascota extends AppCompatActivity {
         cargarAnimal(animal);
         String pos = getIntent().getStringExtra("pos");
         Log.i("POSICION RECIBIDA EDITAR",pos);
+
+        anyo.setMaxValue(30);
+        anyo.setMinValue(0);
+
+        mes.setMaxValue(11);
+        mes.setMinValue(0);
 
         db=null;
         saludSqlHelper = SALUDSqlHelper.getInstance(this);
@@ -114,14 +132,20 @@ public class EditarMascota extends AppCompatActivity {
                 args[0] = String.valueOf(animal.getIdUsuario());
                 args[1] = String.valueOf(animal.getId());
 
-                if(actualizarMascota(args) > 0){
-                    Intent intent = new Intent();
-                    setResult(103,intent);
-                    intent.putExtra("animal",animal);
-                    intent.putExtra("pos",pos);
-                    finish();
-                }else{
-                   FancyToast.makeText(getApplicationContext(),"Error al modificar",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                if (nombre.getText().toString().trim().isEmpty() ||
+                        raza.getText().toString().trim().isEmpty()) {
+                    FancyToast.makeText(getApplicationContext(), "Rellena todos los campos", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                } else {
+
+                    if (actualizarMascota(args) > 0) {
+                        Intent intent = new Intent();
+                        setResult(103, intent);
+                        intent.putExtra("animal", animal);
+                        intent.putExtra("pos", pos);
+                        finish();
+                    } else {
+                        FancyToast.makeText(getApplicationContext(), "Error al modificar", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                    }
                 }
             }
         });
@@ -169,8 +193,13 @@ public class EditarMascota extends AppCompatActivity {
         mes.setValue(animal.getMes());
         raza.setText(animal.getRaza());
         ruta = animal.getImagen();
-        Bitmap bm = BitmapFactory.decodeFile(Uri.decode(ruta)); // Pasa la imagen a bitmap
-        imagen.setImageBitmap(bm);
+        if (ruta.contains("default_")) {
+            int drawableId = getResources().getIdentifier(ruta, "drawable", getApplicationContext().getPackageName());
+            imagen.setImageResource(drawableId);
+        } else {
+            Bitmap bm = BitmapFactory.decodeFile(Uri.decode(ruta)); // Pasa la imagen a bitmap
+            imagen.setImageBitmap(bm);
+        }
         //TODO libreria para los numberPicker
 
         switch (animal.getEspecie()){

@@ -19,6 +19,7 @@ import com.example.login.R;
 
 import java.util.ArrayList;
 
+import SharedPreferences.SharedPreferences;
 import modelo.Animal;
 
 public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.ViewHolderAnimales> implements View.OnClickListener{
@@ -33,6 +34,7 @@ public class AdaptadorAnimales extends RecyclerView.Adapter<AdaptadorAnimales.Vi
     @NonNull
     @Override
     public ViewHolderAnimales onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
 
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.list_item_animales, parent, false);

@@ -32,6 +32,7 @@
         android:layout_alignBottom="@id/linear"
         android:layout_alignEnd="@+id/linear"
         android:background="?attr/buttonColor"
+        android:tint="?attr/tintColor"
         />
 
 
