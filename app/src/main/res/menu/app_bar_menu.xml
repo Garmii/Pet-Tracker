@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/botonCambiarTema"
-        android:title="Cambiar tema"
+        android:title="@string/cambiar_tema"
         android:icon="@drawable/ic_outline_change_theme"
         android:orderInCategory="100"
         app:showAsAction="ifRoom"

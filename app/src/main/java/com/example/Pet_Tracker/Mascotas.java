@@ -93,9 +93,9 @@ public class Mascotas extends AppCompatActivity {
                           Animal animalRecibido = (Animal) intent.getSerializableExtra("animal");
                           listaAnimales.add(animalRecibido);
                           recycler.getAdapter().notifyItemInserted(listaAnimales.size());
-                          Log.i("ANIMAL RECIBIDO AL CREAR",animalRecibido.toString());
 
-                          FancyToast.makeText(getApplicationContext(),animalRecibido.getNombre() + " añadido correctamente",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+
+                          FancyToast.makeText(getApplicationContext(),animalRecibido.getNombre() + getString(R.string.anadido_correctamente),FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
 
                         }else if(result.getResultCode() == 103){ // Vuelvo de editar Animal
                             Intent intent = result.getData();
@@ -104,16 +104,12 @@ public class Mascotas extends AppCompatActivity {
                             listaAnimales.set(Integer.parseInt(pos),a);
                             recycler.getAdapter().notifyItemChanged(Integer.parseInt(pos));
 
-                            Log.i("ANIMAL RECIBIDO AL CREAR",a.toString());
-                            Log.i("ANIMAL RECIBIDO AL CREAR",pos);
-
-                            FancyToast.makeText(getApplicationContext(),a.getNombre() + " modificado correctamente",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+                            FancyToast.makeText(getApplicationContext(),a.getNombre() + getString(R.string.modificado_correctamente),FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
                         }else{ // Vuelvo de arrastrar a los lados!!!
 
                             recycler.getAdapter().notifyDataSetChanged();
 
                         }
-                        Log.i("CODIGO RECIBIDO MASCOTAS",result.getResultCode()+"");
                     }
                 }
         );
@@ -123,7 +119,6 @@ public class Mascotas extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(Mascotas.this,DetalleMascota.class);
-                Log.i("ANINMAL ENVIADO A VER DETALLES",listaAnimales.get(recycler.getChildAdapterPosition(view)).toString());
                 intent.putExtra("animal",listaAnimales.get(recycler.getChildAdapterPosition(view)));
                 activityResultLauncher.launch(intent);
 
@@ -152,25 +147,21 @@ public class Mascotas extends AppCompatActivity {
                         Intent intent = new Intent(Mascotas.this,EditarMascota.class);
                         intent.putExtra("animal",listaAnimales.get(viewHolder.getAdapterPosition()));
                         intent.putExtra("pos",String.valueOf(viewHolder.getAdapterPosition()));
-                        Log.i("ANINMAL ENVIADO EDITAR",listaAnimales.get(viewHolder.getAdapterPosition()).toString());
-                        Log.i("POSICION ANINMAL ENVIADO EDITAR",String.valueOf(viewHolder.getAdapterPosition()));
                         activityResultLauncher.launch(intent);
                             break;
                     case ItemTouchHelper.RIGHT:
 
                         Animal animalSeleccionado = listaAnimales.get(viewHolder.getAdapterPosition());
                         int posicion = viewHolder.getAdapterPosition();
-                        Log.i("ANINMAL ENVIADO BORRAR",animalSeleccionado.toString());
-                        Log.i("POSICION ANINMAL ENVIADO BORRAR",posicion+"");
 
                         new FancyGifDialog.Builder(Mascotas.this) // Dialogo para borrar registros
-                                .setTitle("Estás seguro que deseas eliminar a "+listaAnimales.get(viewHolder.getAdapterPosition()).getNombre())
-                                .setMessage("Esta acción no se podra deshacer, piensatelo bien.")
+                                .setTitle(getString(R.string.seguro_eliminar)+listaAnimales.get(viewHolder.getAdapterPosition()).getNombre())
+                                .setMessage(R.string.no_deshacer)
                                 .setTitleTextColor(R.color.black)
                                 .setDescriptionTextColor(R.color.black)
-                                .setNegativeBtnText("Cancelar")
+                                .setNegativeBtnText(R.string.caneclar)
                                 .setPositiveBtnBackground(R.color.black)
-                                .setPositiveBtnText("Eliminar")
+                                .setPositiveBtnText(R.string.eliminar)
                                 .setNegativeBtnBackground(R.color.black)
                                 .setGifResource(R.drawable.dog_crying)
                                 .isCancellable(true)
@@ -181,9 +172,9 @@ public class Mascotas extends AppCompatActivity {
                                         if(eliminarMascota(animalSeleccionado) > 0){
                                             listaAnimales.remove(posicion);
                                             recycler.getAdapter().notifyItemRemoved(posicion);
-                                        FancyToast.makeText(Mascotas.this,"Adios " + animalSeleccionado.getNombre(),FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+                                        FancyToast.makeText(Mascotas.this,getString(R.string.adios) + animalSeleccionado.getNombre(),FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
                                         }else{
-                                        FancyToast.makeText(Mascotas.this,"Error al eliminar " + animalSeleccionado.getNombre(),FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                                        FancyToast.makeText(Mascotas.this,getString(R.string.error_al_eliminar) + animalSeleccionado.getNombre(),FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
                                         }
 
                                     }
@@ -191,7 +182,7 @@ public class Mascotas extends AppCompatActivity {
                                 .OnNegativeClicked(new FancyGifDialogListener() {//Al pulsar cancelar
                                     @Override
                                     public void OnClick() {
-                                        FancyToast.makeText(Mascotas.this,"No se ha eliminado a " + animalSeleccionado.getNombre(),FancyToast.LENGTH_LONG,FancyToast.WARNING,false).show();
+                                        FancyToast.makeText(Mascotas.this,getString(R.string.no_se_ha_eliminado_a) + animalSeleccionado.getNombre(),FancyToast.LENGTH_LONG,FancyToast.WARNING,false).show();
                                     }
                                 })
                                 .build();
@@ -256,7 +247,6 @@ public class Mascotas extends AppCompatActivity {
            animal.setImagen(cursor.getString(8));
            animales.add(animal);
        }
-        Log.i("ANIMALES EN LA BD",animales.toString());
        cursor.close();
 
         return animales;

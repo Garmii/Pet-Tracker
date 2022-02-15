@@ -12,13 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardBackgroundColor="?attr/cardBackgroundColor"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/diez"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/cinco"
             android:orientation="vertical">
 
             <LinearLayout
@@ -28,17 +28,17 @@
                 android:orientation="horizontal">
 
                 <ImageView android:id="@+id/imagenCrearMascota"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_width="@dimen/cien"
+                    android:layout_height="@dimen/cien"
+                    android:layout_marginTop="@dimen/diez"
+                    android:layout_marginRight="@dimen/diez"
                     />
 
                 <Spinner android:id="@+id/spinnerEspecie"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/diez"
                     android:layout_gravity="center"
                     android:entries="@array/especies"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="@dimen/diez"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     />
@@ -51,17 +51,17 @@
                 app:boxStrokeColor="?attr/textColor"
                 app:hintTextColor="?attr/textColor"
                 android:textColorHint="?attr/textColor"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginTop="@dimen/diez"
+                android:layout_marginLeft="@dimen/veinte"
+                android:layout_marginRight="@dimen/veinte">
 
                 <com.google.android.material.textfield.TextInputEditText android:id="@+id/etNombreMascota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="?attr/textColor"
-                    android:layout_marginTop="10dp"
-                    android:hint="Nombre"
+                    android:layout_marginTop="@dimen/diez"
+                    android:hint="@string/nombre"
                     android:background="@android:color/transparent"
                     />
 
@@ -73,17 +73,17 @@
                 app:boxStrokeColor="?attr/textColor"
                 app:hintTextColor="?attr/textColor"
                 android:textColorHint="?attr/textColor"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp">
+                android:layout_marginTop="@dimen/diez"
+                android:layout_marginLeft="@dimen/veinte"
+                android:layout_marginRight="@dimen/veinte">
 
                 <com.google.android.material.textfield.TextInputEditText android:id="@+id/etRazaMascota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="?attr/textColor"
-                    android:layout_marginTop="10dp"
-                    android:hint="Raza"
+                    android:layout_marginTop="@dimen/diez"
+                    android:hint="@string/raza"
                     android:background="@android:color/transparent"
                     />
 
@@ -94,7 +94,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="?attr/textColor"
-                    android:text="Año"
+                    android:text="@string/a_o"
                     />
 
                 <com.mcdev.quantitizerlibrary.HorizontalQuantitizer
@@ -108,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="?attr/textColor"
-                    android:text="Mes"
+                    android:text="@string/mes"
                     />
 
                 <com.mcdev.quantitizerlibrary.HorizontalQuantitizer
@@ -119,7 +119,7 @@
 
             <RadioGroup
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/diez"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -127,14 +127,14 @@
                 <RadioButton android:id="@+id/rbMacho"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Macho"
+                    android:text="@string/macho"
                     />
 
 
                 <RadioButton android:id="@+id/rbHembra"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hembra"
+                    android:text="@string/hembra"
                     />
 
 
@@ -142,22 +142,22 @@
 
             <Button
                 android:id="@+id/botonCambiarImagenMascota"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/diez"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Cambiar imagen"
+                android:text="@string/cambiar_imagen"
                 android:textColor="?attr/textColor"
                 android:backgroundTint="?attr/buttonColor"
                 />
 
             <Button
                 android:id="@+id/botonAnadirMascota"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/diez"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Anadir mascota"
+                android:text="@string/anadir_mascota"
                 android:textColor="?attr/textColor"
                 android:backgroundTint="?attr/buttonColor"
                 />

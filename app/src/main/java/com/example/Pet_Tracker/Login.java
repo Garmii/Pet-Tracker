@@ -99,9 +99,9 @@ public class Login extends AppCompatActivity {
                     } else {
 
                         if (comprobarCuenta(argsComprobarCuenta)) {// Existe el correo en la BD?
-                            FancyToast.makeText(getApplicationContext(), "Datos incorrectos", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                            FancyToast.makeText(getApplicationContext(), getString(R.string.datos_incorrectos), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                         } else {
-                            FancyToast.makeText(getApplicationContext(), "No hay una cuenta con ese correo, porfavor registrate", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                            FancyToast.makeText(getApplicationContext(), getString(R.string.no_hay_cuenta_registrada), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                         }
                     }
                 }

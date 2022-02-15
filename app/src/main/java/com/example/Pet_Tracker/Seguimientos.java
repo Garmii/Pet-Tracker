@@ -94,10 +94,8 @@ public class Seguimientos extends AppCompatActivity {
             seguimiento.setSexo(cursor.getString(6));
 
             seguimientos.add(seguimiento);
-            Log.i("SEGUIMIENTOS",seguimiento.toString());
         }
         cursor.close();
-        Log.i("SEGUIMIENTOS",seguimientos.toString());
         return seguimientos;
     }
 }

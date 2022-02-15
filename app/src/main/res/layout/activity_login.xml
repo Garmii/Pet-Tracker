@@ -14,16 +14,16 @@
         app:boxStrokeColor="?attr/textColor"
         app:hintTextColor="?attr/textColor"
         android:textColorHint="?attr/textColor"
-        android:hint="Correo"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:hint="@string/correo"
+        android:layout_marginLeft="@dimen/veinte"
+        android:layout_marginRight="@dimen/veinte">
 
     <com.google.android.material.textfield.TextInputEditText android:id="@+id/etCorreo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:inputType="textEmailAddress"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/veinte"
         android:background="@android:color/transparent"
         android:textColor="?attr/textColor"
 
@@ -37,16 +37,16 @@
         app:boxStrokeColor="?attr/textColor"
         app:hintTextColor="?attr/textColor"
         android:textColorHint="?attr/textColor"
-        android:hint="Contraseña"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:hint="@string/contrase_a"
+        android:layout_marginLeft="@dimen/veinte"
+        android:layout_marginRight="@dimen/veinte">
 
     <com.google.android.material.textfield.TextInputEditText android:id="@+id/etContra"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:inputType="textPassword"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/veinte"
         android:background="@android:color/transparent"
         android:textColor="?attr/textColor"
     />
@@ -54,23 +54,23 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button android:id="@+id/iniciarSesion"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/veinte"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Iniciar Sesión"
+        android:text="@string/iniciar_sesion"
         android:textColor="?attr/textColor"
         android:backgroundTint="?attr/buttonColor"
         />
 
     <TextView
-        android:layout_marginTop="20dp"
-        android:textSize="15sp"
+        android:layout_marginTop="@dimen/veinte"
+        android:textSize="@dimen/quince"
         android:textColor="?attr/textColor"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="O si no tienes cuenta"
+        android:text="@string/o_si_ya_tienes_cuenta"
         />
 
     <Button android:id="@+id/registrarse"
@@ -78,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Registrarse"
+        android:text="@string/registrarse"
         android:backgroundTint="?attr/buttonColor"
         />
 

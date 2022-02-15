@@ -158,7 +158,7 @@ public class AnadirMascota extends AppCompatActivity {
                 }
                 if(nombre.getText().toString().trim().isEmpty() ||
                         raza.getText().toString().trim().isEmpty()){
-                    FancyToast.makeText(getApplicationContext(), "Rellena todos los campos", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                    FancyToast.makeText(getApplicationContext(), getString(R.string.rellena_campos), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                 }else {
                     anadirMascota(animal);
                     animal.setId(getIdMascotaCreada(animal));
@@ -209,7 +209,7 @@ public class AnadirMascota extends AppCompatActivity {
                         ruta = getRealPathFromURI(imageUri);
                         imagen.setImageURI(imageUri);
                     }else{
-                        FancyToast.makeText(getApplicationContext(),"Error al cargar la imagen",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                        FancyToast.makeText(getApplicationContext(),getString(R.string.error_cargar_imagen),FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
                     }
                 }
             }

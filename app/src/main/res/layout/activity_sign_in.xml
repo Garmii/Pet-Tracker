@@ -14,15 +14,15 @@
         app:boxStrokeColor="?attr/textColor"
         app:hintTextColor="?attr/textColor"
         android:textColorHint="?attr/textColor"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginLeft="@dimen/veinte"
+        android:layout_marginRight="@dimen/veinte">
 
         <com.google.android.material.textfield.TextInputEditText android:id="@+id/etNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margen_top_registrarse"
-            android:hint="Nombre"
+            android:layout_marginTop="@dimen/veinte"
+            android:hint="@string/nombre"
             android:background="@android:color/transparent"
         />
     </com.google.android.material.textfield.TextInputLayout>
@@ -33,16 +33,16 @@
         app:boxStrokeColor="?attr/textColor"
         app:hintTextColor="?attr/textColor"
         android:textColorHint="?attr/textColor"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginLeft="@dimen/veinte"
+        android:layout_marginRight="@dimen/veinte">
 
         <com.google.android.material.textfield.TextInputEditText android:id="@+id/etCorreo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:inputType="textEmailAddress"
-            android:layout_marginTop="@dimen/margen_top_registrarse"
-            android:hint="Correo"
+            android:layout_marginTop="@dimen/veinte"
+            android:hint="@string/correo"
             android:background="@android:color/transparent"
         />
     </com.google.android.material.textfield.TextInputLayout>
@@ -53,43 +53,43 @@
         app:boxStrokeColor="?attr/textColor"
         app:hintTextColor="?attr/textColor"
         android:textColorHint="?attr/textColor"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginLeft="@dimen/veinte"
+        android:layout_marginRight="@dimen/veinte">
 
         <com.google.android.material.textfield.TextInputEditText android:id="@+id/etContra"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:inputType="textPassword"
-            android:layout_marginTop="@dimen/margen_top_registrarse"
-            android:hint="Contraseña"
+            android:layout_marginTop="@dimen/veinte"
+            android:hint="@string/contrase_a"
             android:background="@android:color/transparent"
         />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button android:id="@+id/registrarse"
-        android:layout_marginTop="@dimen/margen_top_registrarse"
+        android:layout_marginTop="@dimen/veinte"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textColor="?attr/textColor"
-        android:text="Registrarse"
+        android:text="@string/registrarse"
     />
 
     <TextView
-        android:layout_marginTop="@dimen/margen_top_registrarse"
-        android:textSize="15sp"
+        android:layout_marginTop="@dimen/veinte"
+        android:textSize="@dimen/quince"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="O si ya tienes cuenta"
+        android:text="@string/o_si_ya_tienes_cuenta"
     />
 
     <Button android:id="@+id/iniciarSesion"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Iniciar Sesión"
+        android:text="@string/iniciar_sesion"
         android:textColor="?attr/textColor"
         android:backgroundTint="?attr/buttonColor"
     />

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="tamaño_registrarse">30sp</dimen>
-    <dimen name="margen_top_registrarse">20dp</dimen>
+    <dimen name="treinta">30sp</dimen>
+    <dimen name="veinte">20dp</dimen>
     <dimen name="diez">10dp</dimen>
+    <dimen name="quince">15sp</dimen>
+    <dimen name="cinco">5dp</dimen>
+    <dimen name="cien">100dp</dimen>
+    <dimen name="doscientos">200dp</dimen>
+    <dimen name="doscientoscincuenta">250dp</dimen>
+    <dimen name="uno">1dp</dimen>
+    <dimen name="veintesp">20sp</dimen>
+    <dimen name="cientocuarenta">140dp</dimen>
 </resources>

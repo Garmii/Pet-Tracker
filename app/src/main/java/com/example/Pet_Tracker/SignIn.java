@@ -85,20 +85,20 @@ public class SignIn extends AppCompatActivity {
 
                if(comprobarCuenta(argsComprobar)){ // Existe un cuenta
 
-                   FancyToast.makeText(getApplicationContext(),"Ya hay una cuenta asociada a este correo",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                   FancyToast.makeText(getApplicationContext(),getString(R.string.cuenta_asociada),FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
 
                }else{ // No existe la cuenta
                    //Los campos no están vacios
                 if(nombre.getText().toString().trim().isEmpty() ||
                         correo.getText().toString().trim().isEmpty() ||
                         contra.getText().toString().trim().isEmpty()){
-                    FancyToast.makeText(getApplicationContext(), "Rellena todos los campos", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                    FancyToast.makeText(getApplicationContext(), getString(R.string.rellena_campos), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                 }else {
                     if (crearCuenta(argsInsertar)) {
-                        FancyToast.makeText(getApplicationContext(), "Cuenta registrada!", FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+                        FancyToast.makeText(getApplicationContext(), getString(R.string.cuenta_registrada), FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
                         limpiarCampos();
                     } else {
-                        FancyToast.makeText(getApplicationContext(), "Error al crear la cuenta", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                        FancyToast.makeText(getApplicationContext(), getString(R.string.error_crear_cuenta), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                     }
                 }
                }

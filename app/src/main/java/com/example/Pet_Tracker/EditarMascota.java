@@ -90,7 +90,6 @@ public class EditarMascota extends AppCompatActivity {
         animal = getAnimal();
         cargarAnimal(animal);
         String pos = getIntent().getStringExtra("pos");
-        Log.i("POSICION RECIBIDA EDITAR",pos);
 
         anyo.setMaxValue(30);
         anyo.setMinValue(0);
@@ -134,7 +133,7 @@ public class EditarMascota extends AppCompatActivity {
 
                 if (nombre.getText().toString().trim().isEmpty() ||
                         raza.getText().toString().trim().isEmpty()) {
-                    FancyToast.makeText(getApplicationContext(), "Rellena todos los campos", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                    FancyToast.makeText(getApplicationContext(), getString(R.string.rellena_campos), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                 } else {
 
                     if (actualizarMascota(args) > 0) {
@@ -144,7 +143,7 @@ public class EditarMascota extends AppCompatActivity {
                         intent.putExtra("pos", pos);
                         finish();
                     } else {
-                        FancyToast.makeText(getApplicationContext(), "Error al modificar", FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+                        FancyToast.makeText(getApplicationContext(), getString(R.string.error_modificar), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
                     }
                 }
             }
@@ -183,7 +182,6 @@ public class EditarMascota extends AppCompatActivity {
         animal.setRaza(raza.getText().toString());
         animal.setSexo(sexo);
         animal.setImagen(ruta);
-        Log.i("ANIMAL SETEADO EDITAR",animal.toString());
         return animal;
     }
 
@@ -249,7 +247,7 @@ public class EditarMascota extends AppCompatActivity {
 
                         imagen.setImageURI(imageUri);
                     }else{
-                        FancyToast.makeText(getApplicationContext(),"Error al cargar la imagen",FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
+                        FancyToast.makeText(getApplicationContext(),getString(R.string.error_cargar_imagen),FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
                     }
                 }
             }
@@ -271,7 +269,6 @@ public class EditarMascota extends AppCompatActivity {
     private Animal getAnimal() {
         Animal animal = new Animal();
         animal = (Animal) getIntent().getSerializableExtra("animal");
-        Log.i("ANIMAL RECIBIDO EDITAR",animal.toString());
         return animal;
     }
 }
